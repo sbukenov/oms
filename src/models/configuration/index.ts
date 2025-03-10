@@ -1,5 +1,3 @@
-export * from './orderDetails/InterfaceOrderContentTable';
-export * from './orderDetails/InterfaceOrderFulfillmentTable';
 export * from './orderDetails/InterfaceOrderTransactionTable';
 export * from './orderDetails/InterfaceOrderShipmentTable';
 export * from './orderDetails/InterfaceOrderReturnTable';
@@ -9,9 +7,3 @@ export * from './orderDetails/InterfaceCustomerPanel';
 export * from './orderDetails/InterfaceOrderDetailsPanel';
 export * from './orderList/InterfaceOrdersTable';
 export * from './fulfillmentsList/interfaceFulfillmentsTable';
-export * from './returnsList/interfaceReturnsTable';
-export * from './shipmentList/interfaceShipmentsTable';
-export * from './transactionsList/interfaceTransactionsTable';
-export * from './orderCreation/interfaceCreationTable';
-export * from './orderCreation/interfaceProductsTable';
-export * from './receptionDetails/InterfaceReceptionDetailsTable';
