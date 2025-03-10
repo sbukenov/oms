@@ -1,0 +1,3191 @@
+{
+  "specific": {
+    "orders": {
+      "isSelectedEntityIncluded": true,
+      "table": [
+        { "column": "REFERENCE" },
+        { "column": "CUSTOMER" },
+        { "column": "OWNER" },
+        { "column": "STATUS" },
+        { "column": "FULFILLMENT_STATUS" },
+        { "column": "SHIPMENT_STATUS" },
+        { "column": "CREATED_DATE" },
+        { "column": "DELIVERY_DATE" },
+        { "column": "AMOUNT" }
+      ],
+      "filters": {
+        "shape": "drawer",
+        "filterGroups": {
+          "status": [
+            {
+              "key": "status",
+              "type": "multiselectStatuses",
+              "statusGroup": "order",
+              "statusGroupBE": "Order",
+              "label": "order_status",
+              "tooltip": "order_status",
+              "placeholder": "select"
+            },
+            {
+              "key": "fulfillment_status",
+              "type": "multiselectStatuses",
+              "statusGroup": "orderFulfillment",
+              "statusGroupBE": "OrderFulfillmentStatus",
+              "label": "fulfillment_status",
+              "tooltip": "fulfillment_status",
+              "placeholder": "select"
+            },
+            {
+              "key": "shipment_status",
+              "type": "multiselectStatuses",
+              "statusGroup": "orderShipment",
+              "statusGroupBE": "OrderShipmentStatus",
+              "label": "shipment_status",
+              "tooltip": "shipment_status",
+              "placeholder": "select"
+            }
+          ],
+          "dates": [
+            {
+              "key": "created_at",
+              "type": "rangePicker",
+              "label": "creation_date",
+              "disable": "checkDateIsAfterToday"
+            },
+            {
+              "key": "delivery_date",
+              "type": "rangePicker",
+              "label": "delivery_date",
+              "disable": "checkDateIsAfterToday"
+            },
+            {
+              "key": "promised_delivery_date",
+              "type": "rangePicker",
+              "label": "promised_delivery_date"
+            }
+          ],
+          "order_details": [
+            {
+              "key": "owner",
+              "type": "multiselect",
+              "label": "owner",
+              "object": "businessUnits",
+              "placeholder": "select"
+            },
+            {
+              "key": "children",
+              "type": "toggle",
+              "label": "children",
+              "tooltip": "children"
+            },
+            {
+              "key": "type",
+              "type": "multiselect",
+              "label": "order_type",
+              "object": "Order",
+              "placeholder": "select"
+            }
+          ]
+        }
+      },
+      "tabs": [
+        {
+          "key": "all",
+          "title": {
+            "en": "All",
+            "fr": "Toutes"
+          },
+          "url": "/orders",
+          "actions": [
+            {
+              "name": "export-csv",
+              "type": "download",
+              "icon": ["download"],
+              "label": {
+                "en": "Export in CSV",
+                "fr": "Exporter en CSV"
+              },
+              "custom": {
+                "request": {
+                  "url": "{url}/orders/export",
+                  "method": "get",
+                  "extra_params": {
+                    "status": "data.filters.status",
+                    "fulfillment_status": "data.filters.fulfillment_status",
+                    "shipment_status": "data.filters.shipment_status",
+                    "created_at[from]": "data.filters.created_at[0]",
+                    "created_at[to]": "data.filters.created_at[1]",
+                    "delivery_date[from]": "data.filters.delivery_date[0]",
+                    "delivery_date[to]": "data.filters.delivery_date[1]",
+                    "promised_delivery_date[from]": "data.filters.promised_delivery_date[0]",
+                    "promised_delivery_date[to]": "data.filters.promised_delivery_date[1]",
+                    "owner": "data.filters.owner",
+                    "type": "data.filters.type",
+                    "search": "data.search",
+                    "children": "data.filters.children",
+                    "isCancelled": "data.filters.isCancelled"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The CSV document has been downloaded",
+                    "fr": "Le fichier CSV a bien été téléchargé"
+                  }
+                }
+              }
+            },
+            {
+              "name": "create-replenishment-order",
+              "icon": ["add"],
+              "label": {
+                "en": "Create a replenishment order",
+                "fr": "Créer une commande de réaprovisionnement"
+              },
+              "custom": {
+                "request": {
+                  "redirection": "/{baseRoute}/orders/create"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "key": "cancelled",
+          "title": {
+            "en": "Cancelled",
+            "fr": "Annulées"
+          },
+          "url": "/orders?isCancelled=true",
+          "actions": [
+            {
+              "name": "export-csv",
+              "type": "download",
+              "icon": ["download"],
+              "label": {
+                "en": "Export in CSV",
+                "fr": "Exporter en CSV"
+              },
+              "custom": {
+                "request": {
+                  "url": "{url}/orders/export",
+                  "method": "get",
+                  "extra_params": {
+                    "status": "data.filters.status",
+                    "fulfillment_status": "data.filters.fulfillment_status",
+                    "shipment_status": "data.filters.shipment_status",
+                    "created_at[from]": "data.filters.created_at[0]",
+                    "created_at[to]": "data.filters.created_at[1]",
+                    "delivery_date[from]": "data.filters.delivery_date[0]",
+                    "delivery_date[to]": "data.filters.delivery_date[1]",
+                    "promised_delivery_date[from]": "data.filters.promised_delivery_date[0]",
+                    "promised_delivery_date[to]": "data.filters.promised_delivery_date[1]",
+                    "owner": "data.filters.owner",
+                    "type": "data.filters.type",
+                    "search": "data.search",
+                    "isCancelled": true,
+                    "children": "data.filters.children"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The CSV document has been downloaded",
+                    "fr": "Le fichier CSV a bien été téléchargé"
+                  }
+                }
+              }
+            }
+          ],
+          "filters": {
+            "shape": "drawer",
+            "filterGroups": {
+              "dates": [
+                {
+                  "key": "created_at",
+                  "type": "rangePicker",
+                  "label": "creation_date",
+                  "disable": "checkDateIsAfterToday"
+                },
+                {
+                  "key": "promised_delivery_date",
+                  "type": "rangePicker",
+                  "label": "promised_delivery_date",
+                  "tooltip": "promised_delivery_date"
+                }
+              ],
+              "order_details": [
+                {
+                  "key": "owner",
+                  "type": "multiselect",
+                  "label": "owner",
+                  "object": "businessUnits",
+                  "placeholder": "select"
+                },
+                {
+                  "key": "children",
+                  "type": "toggle",
+                  "label": "children",
+                  "tooltip": "children"
+                },
+                {
+                  "key": "type",
+                  "type": "multiselect",
+                  "label": "order_type",
+                  "object": "Order",
+                  "placeholder": "select"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "key": "replenishment",
+          "title": {
+            "en": "Replenishment",
+            "fr": "Réaprovisionnement"
+          },
+          "url": "/orders?type[]=replenishment",
+          "table": [
+            { "column": "REFERENCE" },
+            { "column": "SUPPLIER" },
+            { "column": "CUSTOMER" },
+            { "column": "CREATED_DATE" },
+            { "column": "PROMISED_DELIVERY_DATE" },
+            { "column": "DELIVERY_DATE" },
+            { "column": "AMOUNT" },
+            { "column": "STATUS" },
+            { "column": "INITIAL_TOTAL_AMOUNT_INCLUDING_VAT" }
+          ],
+          "actions": [
+            {
+              "name": "export-csv",
+              "type": "download",
+              "icon": ["download"],
+              "label": {
+                "en": "Export in CSV",
+                "fr": "Exporter en CSV"
+              },
+              "custom": {
+                "request": {
+                  "url": "{url}/orders/export",
+                  "method": "get",
+                  "extra_params": {
+                    "status": "data.filters.status",
+                    "fulfillment_status": "data.filters.fulfillment_status",
+                    "shipment_status": "data.filters.shipment_status",
+                    "created_at[from]": "data.filters.created_at[0]",
+                    "created_at[to]": "data.filters.created_at[1]",
+                    "delivery_date[from]": "data.filters.delivery_date[0]",
+                    "delivery_date[to]": "data.filters.delivery_date[1]",
+                    "promised_delivery_date[from]": "data.filters.promised_delivery_date[0]",
+                    "promised_delivery_date[to]": "data.filters.promised_delivery_date[1]",
+                    "customer[account_id]": "data.filters.owner",
+                    "type": ["replenishment"],
+                    "search": "data.search",
+                    "children": "data.filters.children",
+                    "isCancelled": "data.filters.isCancelled"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The CSV document has been downloaded",
+                    "fr": "Le fichier CSV a bien été téléchargé"
+                  }
+                }
+              }
+            },
+            {
+              "name": "create-replenishment-order",
+              "icon": ["add"],
+              "label": {
+                "en": "Create a replenishment order",
+                "fr": "Créer une commande de réaprovisionnement"
+              },
+              "custom": {
+                "request": {
+                  "redirection": "/{baseRoute}/orders/create"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "orderDetails": {
+      "actions": [
+        {
+          "name": "cancel-order",
+          "icon": ["close"],
+          "label": {
+            "en": "Cancel the order",
+            "fr": "Annuler la commande"
+          },
+          "privilege": "oms-v2.order.cancel",
+          "rules": {
+            "order.cancelled_at": {
+              "equals": null
+            },
+            "order.status": {
+              "not": {
+                "equals": "COMPLETED"
+              }
+            }
+          },
+          "custom": {
+            "refresh": ["orderDetails", "history"],
+            "request": {
+              "url": "{url}/orders/{order.id}/cancellation",
+              "method": "post"
+            },
+            "content": {
+              "title": {
+                "en": "Cancel the order",
+                "fr": "Annuler la commande"
+              },
+              "body": {
+                "en": "Are you sure you want to cancel that order?",
+                "fr": "Êtes-vous sûr de vouloir annuler cette commande?"
+              },
+              "inputs": [
+                {
+                  "label": { "en": "Cancellation reason", "fr": "Motif d'annulation" },
+                  "key": "id",
+                  "type": "select",
+                  "options": {
+                    "route": "{url}/cancellations/reasons?object[]=order&is_active=true",
+                    "fieldNames": {
+                      "value": "id",
+                      "label": "label"
+                    }
+                  }
+                }
+              ]
+            },
+            "success_notification": {
+              "title": {
+                "en": "Success",
+                "fr": "Succès"
+              },
+              "body": {
+                "en": "The order has been successfully cancelled",
+                "fr": "La commande a bien été annulée"
+              }
+            }
+          }
+        },
+        {
+          "name": "confirm-order",
+          "icon": ["check"],
+          "label": {
+            "en": "Confirm the order",
+            "fr": "Confirmer la commande"
+          },
+          "rules": {
+            "order.cancelled_at": {
+              "equals": null
+            },
+            "order.status": {
+              "oneOf": ["CREATED", "DRAFT"]
+            }
+          },
+          "privilege": "oms-v2.order.transition",
+          "custom": {
+            "refresh": ["orderDetails", "history"],
+            "request": {
+              "url": "{url}/orders/{order.id}",
+              "method": "post",
+              "extra_payload": {
+                "transition" : "to_confirm"
+              }
+            },
+            "content": {
+              "title": {
+                "en": "Confirm the order",
+                "fr": "Confirmer la commande"
+              },
+              "body": {
+                "en": "Are you sure you want to confirm the order?",
+                "fr": "Êtes-vous sûr de vouloir confirmer cette commande ?"
+              }
+            },
+            "success_notification": {
+              "title": {
+                "en": "Success",
+                "fr": "Succès"
+              },
+              "body": {
+                "en": "The order has been successfully confirmed",
+                "fr": "La commande a bien été confirmée"
+              }
+            }
+          }
+        },
+        {
+          "name": "process-order",
+          "icon": ["check"],
+          "label": {
+            "en": "Processing by the supplier",
+            "fr": "En cours de traitement par le fournisseur"
+          },
+          "rules": {
+            "order.cancelled_at": {
+              "equals": null
+            },
+            "order.status": {
+              "equals": "CONFIRMED"
+            },
+            "order.type": {
+              "equals": "replenishment"
+            }
+          },
+          "privilege": "oms-v2.order.transition",
+          "custom": {
+            "refresh": ["orderDetails", "history"],
+            "request": {
+              "url": "{url}/orders/{order.id}",
+              "method": "post",
+              "extra_payload": {
+                "transition" : "to_processing"
+              }
+            },
+            "content": {
+              "title": {
+                "en": "Processing by the supplier",
+                "fr": "En cours de traitement par le fournisseur"
+              },
+              "body": {
+                "en": "Are you sure you want to declare the order is processed by the supplier?",
+                "fr": "Êtes-vous sûr de vouloir déclarer que la commande est en cours de traitement ?"
+              }
+            },
+            "success_notification": {
+              "title": {
+                "en": "Success",
+                "fr": "Succès"
+              },
+              "body": {
+                "en": "The order has been successfully set as processing",
+                "fr": "La commande a bien été en cours de traitement"
+              }
+            }
+          }
+        },
+        {
+          "name": "complete-order",
+          "icon": ["check"],
+          "label": {
+            "en": "Complete the order",
+            "fr": "Terminer la commande"
+          },
+          "rules": {
+            "order.cancelled_at": {
+              "equals": null
+            },
+            "order.status": {
+              "equals": "PROCESSING"
+            },
+            "order.type": {
+              "equals": "replenishment"
+            }
+          },
+          "privilege": "oms-v2.order.transition",
+          "custom": {
+            "refresh": ["orderDetails", "history"],
+            "request": {
+              "url": "{url}/orders/{order.id}",
+              "method": "post",
+              "extra_payload": {
+                "transition" : "to_completed"
+              }
+            },
+            "content": {
+              "title": {
+                "en": "Complete the order",
+                "fr": "Terminer la commande"
+              },
+              "body": {
+                "en": "Are you sure you want to complete the order?",
+                "fr": "Êtes-vous sûr de vouloir terminer cette commande ?"
+              }
+            },
+            "success_notification": {
+              "title": {
+                "en": "Success",
+                "fr": "Succès"
+              },
+              "body": {
+                "en": "The order has been successfully completed",
+                "fr": "La commande a bien été terminée"
+              }
+            }
+          }
+        },
+        {
+          "name": "create-return",
+          "icon": ["order-return"],
+          "label": {
+            "en": "Return items",
+            "fr": "Retourner des articles"
+          },
+          "privilege": "oms-v2.return.create",
+          "rules": {
+            "order.type": {
+              "oneOf": ["ship_from_store", "bopis"]
+            },
+            "order.status": {
+              "not": {
+                "oneOf": ["CREATED", "CONFIRMED"]
+              }
+            }
+          }
+        },
+        {
+          "name": "edit-delivery-address",
+          "icon": ["edit"],
+          "label": {
+            "en": "Edit delivery address",
+            "fr": "Modifier l’adresse de livraison"
+          },
+          "privilege": "oms-v2.order.update-shipment-address",
+          "rules": {
+            "order.type": {
+              "oneOf": ["ship_from_store", "bopis"]
+            },
+            "order.status": {
+              "not": {
+                "equals": "COMPLETED"
+              }
+            },
+            "order.cancelled_at": {
+              "equals": null
+            }
+          }
+        },
+        {
+          "name": "hand-over-the-order",
+          "label": {
+            "en": "Hand over the order",
+            "fr": "Remettre la commande"
+          },
+          "privilege": "oms-v2.order.transition",
+          "rules": {
+            "order.cancelled_at": {
+              "equals": null
+            },
+            "order.type": {
+              "equals": "bopis"
+            },
+            "order.status": {
+              "equals": "READY"
+            }
+          },
+          "custom": {
+            "refresh": ["orderDetails", "orderShipments", "history"],
+            "request": {
+              "url": "{url}/orders/{order.id}",
+              "method": "post",
+              "extra_payload": {
+                "transition": "complete"
+              }
+            },
+            "content": {
+              "title": {
+                "en": "Validate handing over of the order",
+                "fr": "Valider la remise de la commande"
+              },
+              "body": {
+                "en": "Please enter the pickup code called by the customer",
+                "fr": "Veuillez entrer le code de retrait appelé par le client"
+              },
+              "inputs": [
+                {
+                  "label": {
+                    "en": "Code",
+                    "fr": "Le code"
+                  },
+                  "key": "pickup_code",
+                  "type": "string",
+                  "fallbackValue": null,
+                  "rules": [
+                    {
+                      "required": true,
+                      "message": { "en": "Code field is mandatory", "fr": "Le code est obligatoire" }
+                    },
+                    {
+                      "pattern": "\\b[0-9]{4}\\b",
+                      "message": { "en": "Please enter 4 digits", "fr": "Entrez 4 chiffres" }
+                    }
+                  ]
+                }
+              ]
+            },
+            "success_notification": {
+              "title": {
+                "en": "Success",
+                "fr": "Succès"
+              },
+              "body": {
+                "en": "The order has been handed over to the customer",
+                "fr": "La commande a été remise au client"
+              }
+            },
+            "error_notifications": [
+              {
+                "title": {
+                  "en": "Error",
+                  "fr": "Erreur"
+                },
+                "body": {
+                  "en": "The pickup code is invalid",
+                  "fr": "Le code de retrait est invalide"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "name": "duplicate-replenishment-order",
+          "icon": ["substitution"],
+          "label": {
+            "en": "Duplicate the order",
+            "fr": "Dupliquer la commande"
+          },
+          "rules": {
+            "order.type": {
+              "equals": "replenishment"
+            }
+          },
+         "custom": {
+            "request": {
+              "redirection": "/{baseRoute}/orders/duplicate/{order.id}"
+            }
+          }
+        },
+        {
+          "name": "edit-replenishment-order",
+          "icon": ["edit"],
+          "label": {
+            "en": "Edit the order",
+            "fr": "Modifier la commande"
+          },
+          "rules": {
+            "order.type": {
+              "equals": "replenishment"
+            },
+            "order.status": {
+              "equals": "DRAFT"
+            },
+            "order.cancelled_at": {
+              "equals": null
+            }
+          },
+         "custom": {
+            "request": {
+              "redirection": "/{baseRoute}/orders/edit/{order.id}"
+            }
+          }
+        },
+        {
+          "name": "receive-order",
+          "icon": ["order-income"],
+          "label": {
+            "en": "Receive",
+            "fr": "Réceptionner"
+          },
+          "rules": {
+            "order.type": {
+              "equals": "replenishment"
+            },
+            "order.status": {
+              "oneOf": ["PROCESSING", "CONFIRMED"]
+            }
+          },
+          "table": [
+            { "column": "IMAGE" },
+            { "column": "PRODUCT_LABEL" },
+            { "column": "PRODUCT_BARCODE" },
+            { "column": "PACKAGING_LABEL" },
+            { "column": "LABEL" },
+            { "column": "OUTER" },
+            { "column": "QUANTITY" },
+            { "column": "UNIT_PRICE" },
+            { "column": "TOTAL_OUTER" },
+            { "column": "TRASH" }
+          ]
+        },
+        {
+          "name": "download-discrepancy-report",
+          "icon": ["download"],
+          "type": "download",
+          "label": {
+            "en": "Download the discrepancy report",
+            "fr": "Télécharger le rapport d'écart"
+          },
+          "custom": {
+            "refresh": ["orderDetails", "history"],
+            "request": {
+              "url": "{url}/stock-operation/replenishment-operation/orders/{order.id}/discrepancy-report/download ",
+              "method": "get",
+              "mimeType": "application/pdf",
+              "config": {
+                "responseType": "arraybuffer"
+              }
+            },
+            "success_notification": {
+              "title": {
+                "en": "Success",
+                "fr": "Succès"
+              },
+              "body": {
+                "en": "The PDF document has been downloaded",
+                "fr": "Le fichier PDF a bien été téléchargé"
+              }
+            }
+          }
+        }
+      ],
+      "tabs": {
+        "synthesis": {
+          "displayComments": true,
+          "rules": {
+            "order.type": {
+              "oneOf": ["bopis", "ship_from_store"]
+            }
+          },
+          "panels": {
+            "customer": [{ "line": "NAME" }, { "line": "PHONE" }, { "line": "EMAIL" }],
+            "orderDetails": [
+              { "line": "TYPE" },
+              { "line": "DELIVERY_DATE" },
+              { "line": "DELIVERY_AT" },
+              { "line": "ADDRESS" }
+            ]
+          },
+          "table": [
+            { "column": "IMAGE" },
+            { "column": "LABEL" },
+            { "column": "QUANTITY" },
+            { "column": "UNIT_PRICE_EXCL_VAT" },
+            { "column": "UNIT_PRICE_INCL_VAT" },
+            { "column": "AMOUNT_EXCL_VAT" },
+            { "column": "VAT_RATE" },
+            { "column": "VAT_AMOUNT" },
+            { "column": "AMOUNT_INCL_VAT" }
+          ],
+          "totalAmounts": [
+            { "line": "INITIAL_TOTAL_EXCL_VAT" },
+            { "line": "INITIAL_TOTAL_VAT" },
+            { "line": "INITIAL_TOTAL_INCL_VAT" },
+            { "line": "FINAL_TOTAL_EXCL_VAT" },
+            { "line": "FINAL_TOTAL_VAT" },
+            { "line": "FINAL_TOTAL_INCL_VAT" }
+          ]
+        },
+        "order": {
+          "displayComments": true,
+          "rules": {
+            "order.type": {
+              "equals": "replenishment"
+            }
+          },
+          "panels": {
+            "supplier": [
+              { "line": "NAME" },
+              { "line": "PHONE" },
+              { "line": "EMAIL" }
+            ],
+            "orderDetails": [
+              { "line": "TYPE" },
+              { "line": "DELIVERY_DATE" },
+              { "line": "DELIVERY_AT" },
+              { "line": "CUSTOMER_NAME" },
+              { "line": "ADDRESS" }
+            ]
+          },
+          "table": [
+            { "column": "IMAGE" },
+            { "column": "LABEL" },
+            { "column": "PRODUCT_REF" },
+            { "column": "PACKAGING_REF" },
+            { "column": "BOX_SIZE" },
+            { "column": "OUTER" },
+            { "column": "UNIT_PRICE_EXCL_VAT" },
+            { "column": "UNIT_PRICE_INCL_VAT" },
+            { "column": "QUANTITY" },
+            { "column": "TOTAL_OUTER" },
+            { "column": "AMOUNT_EXCL_VAT" },
+            { "column": "VAT_AMOUNT" },
+            { "column": "AMOUNT_INCL_VAT" }
+          ],
+          "totalAmounts": [
+            { "line": "INITIAL_TOTAL_EXCL_VAT" },
+            { "line": "INITIAL_TOTAL_VAT" },
+            { "line": "INITIAL_TOTAL_INCL_VAT" },
+            { "line": "FINAL_TOTAL_EXCL_VAT" },
+            { "line": "FINAL_TOTAL_VAT" },
+            { "line": "FINAL_TOTAL_INCL_VAT" }
+          ]
+        },
+        "expedition": {
+          "displayComments": true,
+          "rules": {
+            "order.type": {
+              "equals": "replenishment"
+            }
+          },
+          "actions": [
+            {
+              "name": "handover-expedition",
+              "icon": ["check"],
+              "label": {
+                "en": "Hand over the expedition to the shipper",
+                "fr": "Remettre l'expédition au transporteur"
+              },
+              "rules": {
+                "expedition.status": {
+                  "equals": "AWAITING_RECEPTION"
+                },
+                "order.cancelled_at": {
+                  "equals": null
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderExpeditions", "history"],
+                "request": {
+                  "url": "{url}/stock-operation/replenishment-operation/{expedition.id}",
+                  "method": "post",
+                  "extra_payload": { "transition": "receive" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Hand over the expedition to the shipper",
+                    "fr": "Remettre l'expédition au transporteur"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to hand over the expedition to the shipper?",
+                    "fr": "Êtes-vous sûr de vouloir remettre l'expédition au transporteur ?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "Expedition has been handed over to the shipper",
+                    "fr": "L'expédition a été remise à l'expéditeur"
+                  }
+                }
+              }
+            },
+            {
+              "name": "deliver-expedition",
+              "icon": ["check"],
+              "label": {
+                "en": "Deliver the expedition",
+                "fr": "Livrer l'expédition"
+              },
+              "rules": {
+                "expedition.status": {
+                  "equals": "RECEIVING"
+                },
+                "order.cancelled_at": {
+                  "equals": null
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderExpeditions", "history"],
+                "request": {
+                  "url": "{url}/stock-operation/replenishment-operation/{expedition.id}",
+                  "method": "post",
+                  "extra_payload": { "transition": "complete" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Deliver the expedition",
+                    "fr": "Livrer l'expédition"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to confirm expedition delivery to the store?",
+                    "fr": "Êtes-vous sûr de vouloir confirmer la livraison de l'expédition au magasin ?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "Expedition has been delivered to the store",
+                    "fr": "L'expédition a été livrée au magasin"
+                  }
+                }
+              }
+            },
+            {
+              "name": "refuse-expedition",
+              "icon": ["close"],
+              "label": {
+                "en": "Refuse the expedition",
+                "fr": "Refuser l'expédition"
+              },
+              "rules": {
+                "expedition.status": {
+                  "oneOf": ["AWAITING_RECEPTION", "RECEIVING"]
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderExpeditions", "history"],
+                "request": {
+                  "url": "{url}/stock-operation/replenishment-operation/{expedition.id}",
+                  "method": "post",
+                  "extra_payload": { "transition": "refuse" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Refuse the expedition",
+                    "fr": "Refuser l'expédition"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to refuse the expedition?",
+                    "fr": "Êtes-vous sûr de vouloir refuser l'expédition ?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "Expedition has been refused",
+                    "fr": "L'expédition a été refusée"
+                  }
+                }
+              }
+            },
+            {
+              "name": "upload-delivery-note",
+              "type": "upload",
+              "icon": ["upload"],
+              "label": {
+                "en": "Upload delivery note",
+                "fr": "Télécharger un bon de livraison"
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderExpeditions", "history"],
+                "request": {
+                  "url": "{url}/stock-operation/replenishment-operation/{expedition.id}/attachment/upload",
+                  "method": "post"
+                },
+                "content": {
+                  "title": {
+                    "en": "Upload delivery note",
+                    "fr": "Télécharger un bon de livraison"
+                  },
+                  "body": {
+                    "en": "Please upload a file in one of the following formats: .jpg, .png, .pdf. The maximum size should not exceed 4 Mb.",
+                    "fr": "Téléchargez un fichier dans un des formats suivants: .jpg, .png, .pdf. La taille maximum est limitée de 4 Mo."
+                  },
+                  "confirm": {
+                    "text": {
+                      "en": "Upload",
+                      "fr": "Télécharger"
+                    },
+                    "icon": "download"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Uploaded successfully",
+                    "fr": "Téléchargement réussi"
+                  },
+                  "body": {
+                    "en": "Delivery note has been added",
+                    "fr": "Le bon de livraison a été ajouté"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "reception": {
+          "displayComments": true,
+          "rules": {
+            "order.type": {
+              "equals": "replenishment"
+            }
+          },
+          "actions": [
+            {
+              "name": "validate-reception",
+              "icon": ["check"],
+              "label": {
+                "en": "Validate the reception",
+                "fr": "Valider la réception"
+              },
+              "rules": {
+                "reception.status": {
+                  "equals": "AWAITING_RECEPTION"
+                },
+                "order.cancelled_at": {
+                  "equals": null
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderReceptions", "history"],
+                "request": {
+                  "url": "{url}/stock-operation/replenishment-operation/{reception.id}",
+                  "method": "post",
+                  "extra_payload": { "transition": "receive" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Validate the reception",
+                    "fr": "Valider la réception"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to validate the reception?",
+                    "fr": "Êtes-vous sûr de vouloir valider la réception ?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "Reception has been validated",
+                    "fr": "La réception a été validée"
+                  }
+                }
+              }
+            },
+            {
+              "name": "finalize-reception",
+              "icon": ["check"],
+              "label": {
+                "en": "Finalize the reception",
+                "fr": "Finaliser la réception"
+              },
+              "rules": {
+                "reception.status": {
+                  "equals": "RECEIVING"
+                },
+                "order.cancelled_at": {
+                  "equals": null
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderReceptions", "history"],
+                "request": {
+                  "url": "{url}/stock-operation/replenishment-operation/{reception.id}",
+                  "method": "post",
+                  "extra_payload": { "transition": "complete" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Finalize the reception",
+                    "fr": "Finaliser la réception"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to finalize the reception?",
+                    "fr": "Êtes-vous sûr de vouloir finaliser la réception ?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "Reception has been finalized",
+                    "fr": "La réception a été finalisée"
+                  }
+                }
+              }
+            },
+            {
+              "name": "refuse-reception",
+              "icon": ["close"],
+              "label": {
+                "en": "Refuse the reception",
+                "fr": "Refuser la réception"
+              },
+              "rules": {
+                "reception.status": {
+                  "oneOf": ["AWAITING_RECEPTION", "RECEIVING"]
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderReceptions", "history"],
+                "request": {
+                  "url": "{url}/stock-operation/replenishment-operation/{reception.id}",
+                  "method": "post",
+                  "extra_payload": { "transition": "refuse" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Refuse the reception",
+                    "fr": "Refuser la réception"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to refuse the reception?",
+                    "fr": "Êtes-vous sûr de vouloir refuser la réception ?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "Reception has been refused",
+                    "fr": "La réception a été refusée"
+                  }
+                }
+              }
+            },
+            {
+              "name": "download-reception-note",
+              "icon": ["download"],
+              "type": "download",
+              "label": {
+                "en": "Download the reception note",
+                "fr": "Télécharger le bon de réception"
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderReceptions", "history"],
+                "request": {
+                  "url": "{url}/stock-operation/replenishment-operation/{reception.id}/reception/download ",
+                  "method": "get",
+                  "mimeType": "application/pdf",
+                  "config": {
+                    "responseType": "arraybuffer"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The PDF document has been downloaded",
+                    "fr": "Le fichier PDF a bien été téléchargé"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "preparation": {
+          "displayComments": true,
+          "rules": {
+            "order.type": {
+              "oneOf": ["bopis", "ship_from_store"]
+            }
+          },
+          "table": [
+            { "column": "IMAGE" },
+            { "column": "LABEL" },
+            { "column": "STATUS" },
+            { "column": "ORDERED" },
+            { "column": "PICKED" },
+            { "column": "OUT_OF_STOCK" },
+            { "column": "SUBSTITUTE" }
+          ],
+          "additionalInfo": [{ "line": "CREATED_AT" }, { "line": "UPDATED_AT" }],
+          "actions": [
+            {
+              "name": "cancel-fulfillment",
+              "icon": ["close"],
+              "label": {
+                "en": "Cancel the fulfillment",
+                "fr": "Annuler l'ordre de préparation"
+              },
+              "privilege": "oms-v2.fulfillment.cancel",
+              "rules": {
+                "fulfillment.cancelled_at": {
+                  "equals": null
+                },
+                "fulfillment.status": {
+                  "not": {
+                    "equals": "PICKED"
+                  }
+                },
+                "order.fulfillment.status": {
+                  "not": {
+                    "equals": "PICKED"
+                  }
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderFulfillments", "history"],
+                "request": {
+                  "url": "{url}/fulfillments/{fulfillment.id}/cancellation",
+                  "method": "post"
+                },
+                "content": {
+                  "title": {
+                    "en": "Cancel the fulfillment",
+                    "fr": "Annuler l'ordre de préparation"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to cancel that Fulfillment?",
+                    "fr": "Êtes-vous sûr de ne pas pouvoir annuler cet ordre de préparation?"
+                  },
+                  "inputs": [
+                    {
+                      "label": { "en": "Cancellation reason", "fr": "Motif d'annulation" },
+                      "key": "id",
+                      "type": "select",
+                      "options": {
+                        "route": "{url}/cancellations/reasons?object[]=fulfillment&is_active=true",
+                        "fieldNames": {
+                          "value": "id",
+                          "label": "label"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The Fulfillment has been succefully cancelled",
+                    "fr": "L'ordre de préparation a bien été annulé"
+                  }
+                }
+              }
+            },
+            {
+              "name": "create-shipment",
+              "label": {
+                "en": "Ship preparation",
+                "fr": "Livrer la préparation"
+              },
+              "privilege": "oms-v2.shipment.create",
+              "rules": {
+                "fulfillment.cancelled_at": {
+                  "equals": null
+                },
+                "fulfillment.status": {
+                  "equals": "PICKED"
+                },
+                "fulfillment.fulfillment_items.length": {
+                  "not": {
+                    "equals": 0
+                  }
+                }
+              }
+            },
+            {
+              "name": "download-bill",
+              "icon": ["download"],
+              "type": "download",
+              "label": {
+                "en": "Download the preparatory bill",
+                "fr": "Télécharger le bon de préparation"
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderFulfillments", "history"],
+                "request": {
+                  "url": "{url}/fulfillments/{fulfillment.id}/download",
+                  "method": "get",
+                  "mimeType": "application/pdf",
+                  "config": {
+                    "responseType": "arraybuffer"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The PDF document has been downloaded",
+                    "fr": "Le fichier PDF a bien été téléchargé"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "delivery": {
+          "displayComments": true,
+          "rules": {
+            "order.type": {
+              "oneOf": ["bopis", "ship_from_store"]
+            }
+          },
+          "table": [
+            { "column": "IMAGE" },
+            { "column": "LABEL" },
+            { "column": "REFERENCE" },
+            { "column": "QUANTITY" }
+          ],
+          "additionalInfo": [{ "line": "CREATED_AT" }, { "line": "UPDATED_AT" }, { "line": "EXPECTED_AT" }],
+          "actions": [
+            {
+              "name": "cancel-shipment",
+              "icon": ["close"],
+              "label": {
+                "en": "Cancel the shipment",
+                "fr": "Annuler l'ordre de livraison"
+              },
+              "privilege": "oms-v2.shipment.cancel",
+              "rules": {
+                "shipment.cancelled_at": {
+                  "equals": null
+                },
+                "shipment.status": {
+                  "not": {
+                    "equals": "DELIVERED"
+                  }
+                },
+                "order.status": {
+                  "not": {
+                    "equals": "COMPLETED"
+                  }
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderShipments", "history"],
+                "request": {
+                  "url": "{url}/shipments/{shipment.id}/cancellation",
+                  "method": "post"
+                },
+                "content": {
+                  "title": {
+                    "en": "Cancel the shipment",
+                    "fr": "Annuler l'ordre de livraison"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to cancel that shipment?",
+                    "fr": "Êtes-vous sûr de ne pas pouvoir annuler cet ordre de livraison?"
+                  },
+                  "inputs": [
+                    {
+                      "label": { "en": "Cancellation reason", "fr": "Motif d'annulation" },
+                      "key": "id",
+                      "type": "select",
+                      "options": {
+                        "route": "{url}/cancellations/reasons?object[]=shipment&is_active=true",
+                        "fieldNames": {
+                          "value": "id",
+                          "label": "label"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The shipment has been succefully cancelled",
+                    "fr": "L'ordre de livraison a bien été annulé"
+                  }
+                }
+              }
+            },
+            {
+              "name": "hand-over-to-carrier",
+              "label": {
+                "en": "Hand over the delivery to the carrier",
+                "fr": "Remettre la livraison au transporteur"
+              },
+              "privilege": "oms-v2.shipment.transition",
+              "rules": {
+                "shipment.type": {
+                  "equals": "direct_delivery"
+                },
+                "shipment.status": {
+                  "equals": "TO_SHIP"
+                },
+                "shipment.cancelled_at": {
+                  "equals": null
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderShipments", "history"],
+                "request": {
+                  "url": "{url}/shipments/{shipment.id}",
+                  "method": "post",
+                  "extra_payload": {
+                    "transition" : "give_to_carrier"
+                  }
+                },
+                "content": {
+                  "title": {
+                    "en": "Hand over the delivery to the carrier",
+                    "fr": "Remettre la livraison au transporteur"
+                  },
+                  "body": {
+                    "en": "Are you sure you want hand over the delivery to the carrier?",
+                    "fr": "Êtes-vous sûr de vouloir remettre la livraison au transporteur ?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The delivery has been handed to the carrier",
+                    "fr": "La livraison a été remise au transporteur"
+                  }
+                }
+              }
+            },
+            {
+              "name": "deliver-to-address",
+              "label": {
+                "en": "Deliver to the address",
+                "fr": "Livrer à l'adresse"
+              },
+              "privilege": "oms-v2.shipment.transition",
+              "rules": {
+                "shipment.type": {
+                  "equals": "direct_delivery"
+                },
+                "shipment.status": {
+                  "equals": "HANDED_TO_CARRIER"
+                },
+                "shipment.cancelled_at": {
+                  "equals": null
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderShipments", "history"],
+                "request": {
+                  "url": "{url}/shipments/{shipment.id}",
+                  "method": "post",
+                  "extra_payload": {
+                    "transition" : "deliver"
+                  }
+                },
+                "content": {
+                  "title": {
+                    "en": "Deliver to the address",
+                    "fr": "Livrer à l'adresse"
+                  },
+                  "body": {
+                    "en": "Are you sure you want start the delivery to the address?",
+                    "fr": "Êtes-vous sûr de vouloir lancer la livraison à l'adresse ?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The delivery to the address has been started",
+                    "fr": "La livraison à l'adresse a été lancée"
+                  }
+                }
+              }
+            },
+            {
+              "name": "edit-tracking-link",
+              "icon": ["edit"],
+              "label": {
+                "en": "Edit tracking ID",
+                "fr": "Modifier le lien de suivi"
+              },
+              "privilege": "oms-v2.shipment.update-tracking-link",
+              "rules": {
+                "shipment.cancelled_at": {
+                  "equals": null
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderShipments", "history"],
+                "request": {
+                  "url": "{url}/shipments/{shipment.id}/tracking",
+                  "method": "put"
+                },
+                "content": {
+                  "title": {
+                    "en": "Edit tracking link",
+                    "fr": "Modifier le lien de suivi"
+                  },
+                  "body": {
+                    "en": "Please modify the link below",
+                    "fr": "Veuillez  modifier le lien de tracking ci-dessous"
+                  },
+                  "inputs": [
+                    {
+                      "label": { "en": "Tracking link", "fr": "Le lien de suivi" },
+                      "key": "tracking_link",
+                      "type": "string",
+                      "initialValue": "shipment.tracking_link",
+                      "fallbackValue": null
+                    }
+                  ]
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "Tracking link has been updated succefully",
+                    "fr": "Le lien de suivi a bien été mis à jour"
+                  }
+                }
+              }
+            },
+            {
+              "name": "upload-shipment-attachment",
+              "icon": ["upload"],
+              "type": "upload",
+              "label": {
+                "en": "Upload delivery proof",
+                "fr": "Télécharger une preuve de livraison"
+              },
+              "rules": {
+                "shipment.cancelled_at": {
+                  "equals": null
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderShipments", "history"],
+                "request": {
+                  "url": "{url}/shipments/{shipment.id}/attachment/upload",
+                  "method": "post"
+                },
+                "content": {
+                  "title": {
+                    "en": "Delivery proof",
+                    "fr": "Preuve de livraison"
+                  },
+                  "body": {
+                    "en": "Please upload a proof in one of the following formats: .jpg, .png, .pdf. The maximum size should not exceed 4 Mb.",
+                    "fr": "Téléchargez une preuve dans un des formats suivants: .jpg, .png, .pdf. La taille maximum est limitée de 4 Mo."
+                  },
+                  "confirm": {
+                    "text": {
+                      "en": "Upload",
+                      "fr": "Télécharger"
+                    },
+                    "icon": "download"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Uploaded successfully",
+                    "fr": "Téléchargement réussi"
+                  },
+                  "body": {
+                    "en": "Delivery proof has been added",
+                    "fr": "La preuve de livraison a été ajoutée"
+                  }
+                }
+              }
+            },
+            {
+              "name": "download-delivery-note",
+              "icon": ["download"],
+              "type": "download",
+              "label": {
+                "en": "Download the delivery note",
+                "fr": "Télécharger le bon de remise"
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderShipments", "history"],
+                "request": {
+                  "url": "{url}/shipments/{shipment.id}/download",
+                  "method": "get",
+                  "mimeType": "application/pdf",
+                  "config": {
+                    "responseType": "arraybuffer"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The PDF document has been downloaded",
+                    "fr": "Le fichier PDF a bien été téléchargé"
+                  }
+                }
+              }
+            },
+            {
+              "name": "hand-over-the-shipment",
+              "label": {
+                "en": "Hand over the delivery",
+                "fr": "Remettre la livraison"
+              },
+              "privilege": "oms-v2.shipment.transition",
+              "rules": {
+                "shipment.type": {
+                  "equals": "direct_delivery"
+                },
+                "shipment.status": {
+                  "equals": "DELIVERING"
+                },
+                "shipment.cancelled_at": {
+                  "equals": null
+                }
+              }
+            }
+          ]
+        },
+        "return": {
+          "displayComments": true,
+          "rules": {
+            "order.type": {
+              "oneOf": ["bopis", "ship_from_store"]
+            }
+          },
+          "table": [
+            { "column": "IMAGE" },
+            { "column": "LABEL" },
+            { "column": "QUANTITY" },
+            { "column": "REASON" }
+          ],
+          "additionalInfo": [{ "line": "CREATED_AT" }, { "line": "UPDATED_AT" }, { "line": "REASON" }],
+          "actions": [
+            {
+              "name": "validate-return",
+              "icon": ["check"],
+              "label": {
+                "en": "Validate the return",
+                "fr": "Valider le retour"
+              },
+              "privilege": "oms-v2.return.transition",
+              "rules": {
+                "orderReturn.status": {
+                  "equals": "CREATED"
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderReturns", "history"],
+                "request": {
+                  "url": "{url}/returns/{orderReturn.id}",
+                  "method": "post",
+                  "extra_payload": { "transition": "validate" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Validate the return",
+                    "fr": "Valider le retour"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to validate the return?",
+                    "fr": "Êtes-vous sûr de vouloir valider ce retour?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The return has been successfully validated",
+                    "fr": "Le retour a bien été validé"
+                  }
+                }
+              }
+            },
+            {
+              "name": "submit-return-qualification",
+              "label": {
+                "en": "Submit return for qualification",
+                "fr": "Soumettre le retour à la qualification"
+              },
+              "privilege": "oms-v2.return.transition",
+              "rules": {
+                "orderReturn.status": {
+                  "equals": "VALIDATED"
+                },
+                "orderReturn.cancelled_at": {
+                  "equals": null
+                },
+                "orderReturn.type": {
+                  "equals": "default"
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderReturns", "history"],
+                "request": {
+                  "url": "{url}/returns/{orderReturn.id}",
+                  "method": "post",
+                  "extra_payload": { "transition": "qualify" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Submit return for qualification",
+                    "fr": "Soumettre le retour à la qualification"
+                  },
+                  "body": {
+                    "en": "Are you sure you want submit this return for qualification?",
+                    "fr": "Êtes-vous sûr de vouloir soumettre  ce retour à la qualification ?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The qualification of the return has been started",
+                    "fr": "La qualification du retour a été lancée"
+                  }
+                }
+              }
+            },
+            {
+              "name": "qualify-return",
+              "label": {
+                "en": "Qualify the return",
+                "fr": "Qualifier le retour"
+              },
+              "privilege": "oms-v2.return.transition",
+              "rules": {
+                "orderReturn.status": {
+                  "equals": "QUALIFIYING"
+                },
+                "orderReturn.cancelled_at": {
+                  "equals": null
+                },
+                "orderReturn.type": {
+                  "equals": "default"
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderReturns", "history"],
+                "request": {
+                  "url": "{url}/returns/{orderReturn.id}",
+                  "method": "post",
+                  "extra_payload": { "transition": "complete" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Qualify the return",
+                    "fr": "Qualifier le retour"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to complete qualification of this return?",
+                    "fr": "Êtes-vous sûr de vouloir completer la qualification de ce retour ?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The return has been qualified",
+                    "fr": "Le retour a été qualifié"
+                  }
+                }
+              }
+            },
+            {
+              "name": "refuse-return",
+              "icon": ["close"],
+              "label": {
+                "en": "Refuse the return",
+                "fr": "Refuser le retour"
+              },
+              "privilege": "oms-v2.return.transition",
+              "rules": {
+                "orderReturn.status": {
+                  "equals": "CREATED"
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderReturns", "history"],
+                "request": {
+                  "url": "{url}/returns/{orderReturn.id}",
+                  "method": "post",
+                  "extra_payload": { "transition": "refuse" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Refuse the return",
+                    "fr": "Refuser le retour"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to refuse the return?",
+                    "fr": "Êtes-vous sûr de vouloir refuser ce retour?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The return has been successfully refused",
+                    "fr": "Le retour a bien été refusé"
+                  }
+                }
+              }
+            },
+            {
+              "name": "cancel-return",
+              "icon": ["close"],
+              "label": {
+                "en": "Cancel the return",
+                "fr": "Annuler le retour"
+              },
+              "rules": {
+                "orderReturn.cancelled_at": {
+                  "equals": null
+                },
+                "orderReturn.status": {
+                  "not": {
+                    "oneOf": ["QUALIFIED", "REFUSED"]
+                  }
+                },
+                "orderReturn.type": {
+                  "equals": "default"
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "history", "orderReturns"],
+                "request": {
+                  "url": "{url}/returns/{orderReturn.id}/cancellation",
+                  "method": "post"
+                },
+                "content": {
+                  "title": {
+                    "en": "Cancel the return",
+                    "fr": "Annuler le retour"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to cancel the return?",
+                    "fr": "Êtes-vous sûr de vouloir annuler ce retour ?"
+                  },
+                  "inputs": [
+                    {
+                      "label": { "en": "Cancellation reason", "fr": "Motif d'annulation" },
+                      "key": "id",
+                      "type": "select",
+                      "options": {
+                        "route": "{url}/cancellations/reasons?object[]=return&is_active=true",
+                        "fieldNames": {
+                          "value": "id",
+                          "label": "label"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The return has been successfully cancelled",
+                    "fr": "Le retour a bien été annulé"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "transaction": {
+          "displayComments": true,
+          "table": [
+            { "column": "IMAGE" },
+            { "column": "LABEL" },
+            { "column": "QUANTITY" },
+            { "column": "UNIT_PRICE_EXCL_VAT" },
+            { "column": "UNIT_PRICE_INCL_VAT" },
+            { "column": "AMOUNT_EXCL_VAT" },
+            { "column": "AMOUNT_INCL_VAT" },
+            { "column": "AMOUNT" },
+            { "column": "ACTION" }
+          ],
+          "additionalInfo": [{ "line": "CREATED_AT" }, { "line": "UPDATED_AT" }],
+          "totalAmounts": [
+            { "line": "TOTAL_AMOUNT_EXCL_VAT" },
+            { "line": "TOTAL_VAT" },
+            { "line": "TOTAL_AMOUNT_INCL_VAT" }
+          ],
+          "lineActions": [
+            {
+              "name": "edit-fee",
+              "label": {
+                "en": "Edit fee",
+                "fr": "Modifier les frais"
+              },
+               "rules": {
+                "transaction.status": {
+                  "equals": "CREATED"
+                },
+                "transaction.cancelled_at": {
+                  "equals": null
+                },
+                "line.isFee": {
+                  "equals": true
+                }
+              }
+            },
+            {
+              "name": "delete-fee",
+              "label": {
+                "en": "Delete fee",
+                "fr": "Supprimer les frais"
+              },
+              "rules": {
+                "transaction.status": {
+                  "equals": "CREATED"
+                },
+                "transaction.cancelled_at": {
+                  "equals": null
+                },
+                "line.isFee": {
+                  "equals": true
+                }
+              },
+              "custom": {
+                "refresh": ["orderTransactions"],
+                "request": {
+                  "url": "{url}/transactions/{transaction.id}/fees/{line.id}",
+                  "method": "delete",
+                  "extra_payload": { "transition": "validate" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Delete fee",
+                    "fr": "Supprimer les frais"
+                  },
+                  "body": {
+                    "en": "Do you want to delete the fee? The total amount will be updated",
+                    "fr": "Souhaitez-vous supprimer les frais ? Le montant total sera mis à jour"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The fee has been deleted",
+                    "fr": "Les frais ont été supprimés"
+                  }
+                }
+              }
+            }
+          ],
+          "actions": [
+            {
+              "name": "validate-refund",
+              "label": {
+                "en": "Validate the refund",
+                "fr": "Valider le remboursement"
+              },
+              "privilege": "oms-v2.transaction.transition",
+              "rules": {
+                "transaction.status": {
+                  "equals": "CREATED"
+                },
+                "transaction.type": {
+                  "equals": "refund"
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderTransactions", "history"],
+                "request": {
+                  "url": "{url}/transactions/{transaction.id}",
+                  "method": "post",
+                  "extra_payload": { "transition": "validate" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Validate the refund",
+                    "fr": "Valider le remboursement"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to validate the refund?",
+                    "fr": "Êtes-vous sûr de vouloir valider ce remboursement?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The refund has been successfully validated",
+                    "fr": "Le remboursement a bien été validé"
+                  }
+                }
+              }
+            },
+            {
+              "name": "submit-transaction-redunding",
+              "label": {
+                "en": "Submit the transaction for refunding",
+                "fr": "Soumettre la transaction au remboursement"
+              },
+              "privilege": "oms-v2.transaction.transition",
+              "rules": {
+                "transaction.status": {
+                  "equals": "VALIDATED"
+                },
+                "transaction.type": {
+                  "equals": "refund"
+                },
+                "transaction.cancelled_at": {
+                  "equals": null
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderTransactions", "history"],
+                "request": {
+                  "url": "{url}/transactions/{transaction.id}",
+                  "method": "post",
+                  "extra_payload": { "transition": "refund" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Submit the transaction for refunding",
+                    "fr": "Soumettre la transaction au remboursement"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to start refunding this transaction?",
+                    "fr": "Êtes-vous sûr de vouloir procéder au remboursement de cette transaction ?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The transaction refunding has been started",
+                    "fr": "Le remboursement de la transaction a été lancé"
+                  }
+                }
+              }
+            },
+            {
+              "name": "redund-transaction",
+              "label": {
+                "en": "Refund the transaction",
+                "fr": "Rembourser la transaction"
+              },
+              "privilege": "oms-v2.transaction.transition",
+              "rules": {
+                "transaction.status": {
+                  "equals": "REFUNDING"
+                },
+                "transaction.type": {
+                  "equals": "refund"
+                },
+                "transaction.cancelled_at": {
+                  "equals": null
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderTransactions", "history"],
+                "request": {
+                  "url": "{url}/transactions/{transaction.id}",
+                  "method": "post",
+                  "extra_payload": { "transition": "complete" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Refund the transaction",
+                    "fr": "Rembourser la transaction"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to complete refunding of this transaction?",
+                    "fr": "Êtes-vous sûr de vouloir completer le remboursement de cette transaction ?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The transaction has been refunded",
+                    "fr": "La transaction a été remboursée"
+                  }
+                }
+              }
+            },
+            {
+              "name": "refuse-refund",
+              "icon": ["close"],
+              "label": {
+                "en": "Refuse the refund",
+                "fr": "Refuser le remboursement"
+              },
+              "privilege": "oms-v2.transaction.transition",
+              "rules": {
+                "transaction.status": {
+                  "equals": "CREATED"
+                },
+                "transaction.type": {
+                  "equals": "refund"
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "orderTransactions", "history"],
+                "request": {
+                  "url": "{url}/transactions/{transaction.id}",
+                  "method": "post",
+                  "extra_payload": { "transition": "refuse" }
+                },
+                "content": {
+                  "title": {
+                    "en": "Refuse the refund",
+                    "fr": "Refuser le remboursement"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to refuse the refund?",
+                    "fr": "Êtes-vous sûr de vouloir refuser ce remboursement?"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The refund has been successfully refused",
+                    "fr": "Le remboursement a bien été refusé"
+                  }
+                }
+              }
+            },
+            {
+              "name": "add-fee",
+              "icon": ["add"],
+              "label": {
+                "en": "Add fee",
+                "fr": "Ajouter un frais"
+              },
+              "privilege": "oms-v2.transaction.create-fee",
+              "rules": {
+                "transaction.cancelled_at": {
+                  "equals": null
+                },
+                "transaction.status": {
+                  "not": {
+                    "oneOf": ["REFUNDING", "REFUNDED", "FAILED", "REFUSED", "VALIDATED"]
+                  }
+                },
+                "transaction.type": {
+                  "equals": "refund"
+                }
+              }
+            },
+            {
+              "name": "cancel-transaction",
+              "icon": ["close"],
+              "label": {
+                "en": "Cancel the transaction",
+                "fr": "Annuler la transaction"
+              },
+              "privilege": "oms-v2.transaction.cancel",
+              "rules": {
+                "transaction.cancelled_at": {
+                  "equals": null
+                },
+                "transaction.status": {
+                  "oneOf": ["CREATED", "VALIDATED", "REFUNDING"]
+                }
+              },
+              "custom": {
+                "refresh": ["orderDetails", "history", "orderTransactions"],
+                "request": {
+                  "url": "{url}/transactions/{transaction.id}/cancellation",
+                  "method": "post"
+                },
+                "content": {
+                  "title": {
+                    "en": "Cancel the transaction",
+                    "fr": "Annuler la transaction"
+                  },
+                  "body": {
+                    "en": "Are you sure you want to cancel the transaction?",
+                    "fr": "Êtes-vous sûr de vouloir annuler cette transaction ?"
+                  },
+                  "inputs": [
+                    {
+                      "label": { "en": "Cancellation reason", "fr": "Motif d'annulation" },
+                      "key": "id",
+                      "type": "select",
+                      "options": {
+                        "route": "{url}/cancellations/reasons?object[]=transaction&is_active=true",
+                        "fieldNames": {
+                          "value": "id",
+                          "label": "label"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The transaction has been successfully cancelled",
+                    "fr": "La transaction a bien été annulée"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "orderCreation": {
+      "table": [
+        { "column": "IMAGE" },
+        { "column": "LABEL" },
+        { "column": "REFERENCE" },
+        { "column": "BOX_SIZE" },
+        { "column": "PACKAGING_REF" },
+        { "column": "OUTER" },
+        { "column": "QUANTITY" },
+        { "column": "TOTAL_OUTER" },
+        { "column": "PRICE_PER_UNIT" },
+        { "column": "UNIT_PRICE_EXCL_VAT" },
+        { "column": "UNIT_PRICE_INCL_VAT" },
+        { "column": "AMOUNT_EXCL_VAT" },
+        { "column": "VAT_AMOUNT" },
+        { "column": "AMOUNT_INCL_VAT" },
+        { "column": "TRASH" }
+      ],
+      "productsTable": [
+        { "column": "IMAGE" },
+        { "column": "LABEL" },
+        { "column": "REFERENCE" },
+        { "column": "BOX_SIZE" },
+        { "column": "PACKAGING_REF" },
+        { "column": "OUTER" },
+        { "column": "PRICE_PER_UNIT" },
+        { "column": "MIN_QUANTITY" },
+        { "column": "MIN_PRICE" }
+      ]
+    },
+    "statuses": {
+      "order": {
+        "CREATED": {
+          "color": "#8F94A1",
+          "title": {
+            "en": "Created",
+            "fr": "Créée"
+          }
+        },
+        "DRAFT": {
+          "color": "#8F94A1",
+          "title": {
+            "en": "Draft",
+            "fr": "Brouillon"
+          }
+        },
+        "CONFIRMED": {
+          "color": "#257BE7",
+          "title": {
+            "en": "Confirmed",
+            "fr": "Confirmée"
+          }
+        },
+        "PROCESSING": {
+          "color": "#FF9D00",
+          "title": {
+            "en": "Processing",
+            "fr": "En cours"
+          }
+        },
+        "READY": {
+          "color": "#56C65A",
+          "title": {
+            "en": "Ready",
+            "fr": "Prête"
+          }
+        },
+        "COMPLETED": {
+          "color": "#48A64B",
+          "title": {
+            "en": "Completed",
+            "fr": "Terminée"
+          }
+        },
+        "CANCELLED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Cancelled",
+            "fr": "Annulée"
+          }
+        }
+      },
+      "orderFulfillment": {
+        "AWAITING_FULFILLMENT": {
+          "color": "#8F94A1",
+          "title": {
+            "en": "Awaiting fulfillment",
+            "fr": "En attente de préparation"
+          }
+        },
+        "TO_PREPARE": {
+          "color": "#257BE7",
+          "title": {
+            "en": "To prepare",
+            "fr": "À préparer"
+          }
+        },
+        "PREPARING": {
+          "color": "#FF9D00",
+          "title": {
+            "en": "Preparing",
+            "fr": "En cours de préparation"
+          }
+        },
+        "PARTIALLY_PICKED": {
+          "color": "#56C65A",
+          "title": {
+            "en": "Partially picked",
+            "fr": "Partiellement préparé"
+          }
+        },
+        "PICKED": {
+          "color": "#48A64B",
+          "title": {
+            "en": "Picked",
+            "fr": "Préparé"
+          }
+        },
+        "PREPARATION_REFUSED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Preparation refused",
+            "fr": "Préparation refusée"
+          }
+        },
+        "CANCELLED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Cancelled",
+            "fr": "Annulée"
+          }
+        }
+      },
+      "orderShipment": {
+        "AWAITING_SHIPMENT": {
+          "color": "#8F94A1",
+          "title": {
+            "en": "Awaiting shipment",
+            "fr": "En attente de livraison"
+          }
+        },
+        "TO_DELIVER": {
+          "color": "#257BE7",
+          "title": {
+            "en": "To deliver",
+            "fr": "À livrer"
+          }
+        },
+        "DELIVERING": {
+          "color": "#FF9D00",
+          "title": {
+            "en": "Delivering",
+            "fr": "En cours de livraison"
+          }
+        },
+        "PARTIALLY_DELIVERED": {
+          "color": "#56C65A",
+          "title": {
+            "en": "Partially delivered",
+            "fr": "Partiellement livrée"
+          }
+        },
+        "DELIVERED": {
+          "color": "#48A64B",
+          "title": {
+            "en": "Delivered",
+            "fr": "Livrée"
+          }
+        },
+        "CANCELLED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Cancelled",
+            "fr": "Annulée"
+          }
+        }
+      },
+      "orderReception": {
+        "AWAITING_RECEPTION": {
+          "color": "#8F94A1",
+          "title": {
+            "en": "Awaiting reception",
+            "fr": "En attente de réception"
+          }
+        },
+        "RECEIVING": {
+          "color": "#FF9D00",
+          "title": {
+            "en": "Receiving",
+            "fr": "En cours de réception"
+          }
+        },
+        "PARTIALLY_RECEIVED": {
+          "color": "#56C65A",
+          "title": {
+            "en": "Partially received",
+            "fr": "Partiellement reçue"
+          }
+        },
+        "RECEIVED": {
+          "color": "#48A64B",
+          "title": {
+            "en": "Received",
+            "fr": "Reçue"
+          }
+        },
+        "REFUSED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Refused",
+            "fr": "Refusée"
+          }
+        }
+      },
+      "orderExpedition": {
+        "AWAITING_RECEPTION": {
+          "color": "#8F94A1",
+          "title": {
+            "en": "Awaiting exception",
+            "fr": "En attente de livraison"
+          }
+        },
+        "RECEIVING": {
+          "color": "#FF9D00",
+          "title": {
+            "en": "Receiving",
+            "fr": "En cours de livraison"
+          }
+        },
+        "PARTIALLY_RECEIVED": {
+          "color": "#56C65A",
+          "title": {
+            "en": "Partially received",
+            "fr": "Partiellement livrée"
+          }
+        },
+        "RECEIVED": {
+          "color": "#48A64B",
+          "title": {
+            "en": "Received",
+            "fr": "Livrée"
+          }
+        },
+        "REFUSED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Refused",
+            "fr": "Refusée"
+          }
+        }
+      },
+      "fulfillment": {
+        "TO_PREPARE": {
+          "color": "#257BE7",
+          "title": {
+            "en": "To prepare",
+            "fr": "À préparer"
+          }
+        },
+        "PREPARING": {
+          "color": "#FF9D00",
+          "title": {
+            "en": "Preparing",
+            "fr": "En cours de préparation"
+          }
+        },
+        "PARTIALLY_PICKED": {
+          "color": "#56C65A",
+          "title": {
+            "en": "Partially prepared",
+            "fr": "Partiellment préparé"
+          }
+        },
+        "PICKED": {
+          "color": "#48A64B",
+          "title": {
+            "en": "Prepared",
+            "fr": "Préparé"
+          }
+        },
+        "UNABLE_TO_PREPARE": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Unable to prepare",
+            "fr": "Impossible à préparer"
+          }
+        },
+        "REASSIGNED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Reassigned",
+            "fr": "Réaffecté"
+          }
+        },
+        "CANCELLED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Cancelled",
+            "fr": "Annulée"
+          }
+        }
+      },
+      "shipment": {
+        "TO_SHIP": {
+          "color": "#257BE7",
+          "title": {
+            "en": "To ship",
+            "fr": "À expédié"
+          }
+        },
+        "HANDED_TO_CARRIER": {
+          "color": "#56C65A",
+          "title": {
+            "en": "Handed to carrier",
+            "fr": "Expédié"
+          }
+        },
+        "DELIVERING": {
+          "color": "#FF9D00",
+          "title": {
+            "en": "Delivering",
+            "fr": "En cours de livraison"
+          }
+        },
+        "PARTIALLY_DELIVERED": {
+          "color": "#56C65A",
+          "title": {
+            "en": "Partially delivered",
+            "fr": "Partiellement livrée"
+          }
+        },
+        "DELIVERED": {
+          "color": "#48A64B",
+          "title": {
+            "en": "Delivered",
+            "fr": "Livré"
+          }
+        },
+        "CANCELLED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Cancelled",
+            "fr": "Annulée"
+          }
+        }
+      },
+      "return": {
+        "CREATED": {
+          "color": "#8F94A1",
+          "title": {
+            "en": "Created",
+            "fr": "Crée"
+          }
+        },
+        "REFUSED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Refused",
+            "fr": "Refusé"
+          }
+        },
+        "VALIDATED": {
+          "color": "#257BE7",
+          "title": {
+            "en": "Validated",
+            "fr": "Validé"
+          }
+        },
+        "QUALIFIYING": {
+          "color": "#56C65A",
+          "title": {
+            "en": "Qualifiying",
+            "fr": "En qualification"
+          }
+        },
+        "QUALIFIED": {
+          "color": "#48A64B",
+          "title": {
+            "en": "Qualified",
+            "fr": "Qualifié"
+          }
+        },
+        "CANCELLED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Cancelled",
+            "fr": "Annulée"
+          }
+        }
+      },
+      "fulfillmentItem": {
+        "TO_PROCESS": {
+          "color": "#257BE7",
+          "title": {
+            "en": "To process",
+            "fr": "À traiter"
+          }
+        },
+        "PROCESSING": {
+          "color": "#FF9D00",
+          "title": {
+            "en": "Processing",
+            "fr": "En cours de traitement"
+          }
+        },
+        "PROCESSED": {
+          "color": "#56C65A",
+          "title": {
+            "en": "Processed",
+            "fr": "Traité"
+          }
+        },
+        "UNABLE_TO_PROCESS": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Unable to process",
+            "fr": "Impossible à traiter"
+          }
+        },
+        "CANCELLED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Cancelled",
+            "fr": "Annulée"
+          }
+        }
+      },
+      "returnItem": {
+        "CANCELLED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Cancelled",
+            "fr": "Annulée"
+          }
+        }
+      },
+      "picking": {
+        "PICKED": {
+          "color": "#56C65A",
+          "title": {
+            "en": "Picked",
+            "fr": "Préparé"
+          }
+        },
+        "OUT_OF_STOCK": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Out of stock",
+            "fr": "Rupture de stock"
+          }
+        },
+        "SUBSTITUTE": {
+          "color": "#FF9D00",
+          "title": {
+            "en": "Substitute",
+            "fr": "Substituant"
+          }
+        }
+      },
+      "transaction": {
+        "CREATED": {
+          "color": "#8F94A1",
+          "title": {
+            "en": "Created",
+            "fr": "Crée"
+          }
+        },
+        "REFUSED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Refused",
+            "fr": "Refusé"
+          }
+        },
+        "VALIDATED": {
+          "color": "#257BE7",
+          "title": {
+            "en": "Validated",
+            "fr": "Validé"
+          }
+        },
+        "REFUNDING": {
+          "color": "#56C65A",
+          "title": {
+            "en": "Refunding",
+            "fr": "En cours de remboursement"
+          }
+        },
+        "REFUNDED": {
+          "color": "#48A64B",
+          "title": {
+            "en": "Refunded",
+            "fr": "Remboursé"
+          }
+        },
+        "FAILED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Failed",
+            "fr": "Échoué"
+          }
+        },
+        "CANCELLED": {
+          "color": "#D41C1E",
+          "title": {
+            "en": "Cancelled",
+            "fr": "Annulée"
+          }
+        }
+      }
+    },
+    "preparations": {
+      "isSelectedEntityIncluded": true,
+      "filters": {
+        "shape": "drawer",
+        "filterGroups": {
+          "status": [
+            {
+              "key": "status",
+              "type": "multiselectStatuses",
+              "statusGroup": "orderFulfillment",
+              "statusGroupBE": "OrderFulfillmentStatus",
+              "label": "status",
+              "placeholder": "select"
+            },
+            {
+              "key": "owner",
+              "type": "multiselect",
+              "label": "owner",
+              "object": "businessUnits",
+              "placeholder": "select"
+            },
+            {
+              "key": "created_at",
+              "type": "rangePicker",
+              "label": "creation_date",
+              "disable": "checkDateIsAfterToday"
+            }
+          ]
+        }
+      },
+      "table": [{ "column": "REFERENCE" }, { "column": "OWNER" }, { "column": "STATUS" }, { "column": "CREATED_DATE" }],
+      "tabs": [
+        {
+          "key": "all",
+          "title": {
+            "en": "All",
+            "fr": "Toutes"
+          },
+          "url": "/fulfillments"
+        },
+        {
+          "key": "cancelled",
+          "title": {
+            "en": "Cancelled",
+            "fr": "Annulés"
+          },
+          "filters": {
+            "shape": "drawer",
+            "filterGroups": {
+              "status": [
+                {
+                  "key": "owner",
+                  "type": "multiselect",
+                  "label": "owner",
+                  "object": "businessUnits",
+                  "placeholder": "select"
+                },
+                {
+                  "key": "created_at",
+                  "type": "rangePicker",
+                  "label": "creation_date",
+                  "disable": "checkDateIsAfterToday"
+                }
+              ]
+            }
+          },
+          "url": "/fulfillments?isCancelled=true"
+        }
+      ]
+    },
+    "returns": {
+      "isSelectedEntityIncluded": true,
+      "filters": {
+        "shape": "drawer",
+        "filterGroups": {
+          "status": [
+            {
+              "key": "status",
+              "type": "multiselectStatuses",
+              "statusGroup": "return",
+              "statusGroupBE": "OrderReturn",
+              "label": "status",
+              "placeholder": "select"
+            },
+            {
+              "key": "owner",
+              "type": "multiselect",
+              "label": "owner",
+              "object": "businessUnits",
+              "placeholder": "select"
+            },
+            {
+              "key": "created_at",
+              "type": "rangePicker",
+              "label": "creation_date",
+              "disable": "checkDateIsAfterToday"
+            }
+          ]
+        }
+      },
+      "table": [
+        { "column": "REFERENCE" },
+        { "column": "CUSTOMER" },
+        { "column": "OWNER" },
+        { "column": "STATUS" },
+        { "column": "CREATED_DATE" }
+      ],
+      "tabs": [
+        {
+          "key": "all",
+          "title": {
+            "en": "All",
+            "fr": "Toutes"
+          },
+          "url": "/returns"
+        },
+        {
+          "key": "cancelled",
+          "filters": {
+            "shape": "drawer",
+            "filterGroups": {
+              "status": [
+                {
+                  "key": "owner",
+                  "type": "multiselect",
+                  "label": "owner",
+                  "object": "businessUnits",
+                  "placeholder": "select"
+                },
+                {
+                  "key": "created_at",
+                  "type": "rangePicker",
+                  "label": "creation_date",
+                  "disable": "checkDateIsAfterToday"
+                }
+              ]
+            }
+          },
+          "title": {
+            "en": "Cancelled",
+            "fr": "Annulés"
+          },
+          "url": "/returns?isCancelled=true"
+        }
+      ]
+    },
+    "deliveries": {
+      "isSelectedEntityIncluded": true,
+      "filters": {
+        "shape": "drawer",
+        "filterGroups": {
+          "status": [
+            {
+              "key": "status",
+              "type": "multiselectStatuses",
+              "statusGroup": "shipment",
+              "statusGroupBE": "Shipment",
+              "label": "status",
+              "placeholder": "select"
+            },
+            {
+              "key": "issuer",
+              "type": "multiselect",
+              "label": "owner",
+              "object": "businessUnits",
+              "placeholder": "select"
+            },
+            {
+              "key": "created_at",
+              "type": "rangePicker",
+              "label": "creation_date",
+              "disable": "checkDateIsAfterToday"
+            }
+          ]
+        }
+      },
+      "table": [
+        { "column": "REFERENCE" },
+        { "column": "ENTITY" },
+        { "column": "STATUS" },
+        { "column": "CREATION_DATE" },
+        { "column": "DELIVERY_DATE" },
+        { "column": "TRACKING_LINK" }
+      ],
+      "tabs": [
+        {
+          "key": "all",
+          "title": {
+            "en": "All",
+            "fr": "Toutes"
+          },
+          "url": "/shipments",
+          "actions": [
+            {
+              "name": "export-shipments-csv",
+              "type": "download",
+              "icon": ["download"],
+              "label": {
+                "en": "Export in CSV",
+                "fr": "Exporter en CSV"
+              },
+              "custom": {
+                "request": {
+                  "url": "{url}/shipments/export",
+                  "method": "get",
+                  "extra_params": {
+                    "status": "data.filters.status",
+                    "created_at[from]": "data.filters.created_at[0]",
+                    "created_at[to]": "data.filters.created_at[1]",
+                    "issuer": "data.filters.issuer",
+                    "search": "data.search",
+                    "isCancelled": "data.filters.isCancelled"
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The CSV document has been downloaded",
+                    "fr": "Le fichier CSV a bien été téléchargé"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "key": "cancelled",
+          "filters": {
+            "shape": "drawer",
+            "filterGroups": {
+              "status": [
+                {
+                  "key": "issuer",
+                  "type": "multiselect",
+                  "label": "owner",
+                  "object": "businessUnits",
+                  "placeholder": "select"
+                },
+                {
+                  "key": "created_at",
+                  "type": "rangePicker",
+                  "label": "creation_date",
+                  "disable": "checkDateIsAfterToday"
+                }
+              ]
+            }
+          },
+          "title": {
+            "en": "Cancelled",
+            "fr": "Annulés"
+          },
+          "url": "/shipments?isCancelled=true",
+          "actions": [
+            {
+              "name": "export-shipments-csv",
+              "type": "download",
+              "icon": ["download"],
+              "label": {
+                "en": "Export in CSV",
+                "fr": "Exporter en CSV"
+              },
+              "custom": {
+                "request": {
+                  "url": "{url}/shipments/export",
+                  "method": "get",
+                  "extra_params": {
+                    "created_at[from]": "data.filters.created_at[0]",
+                    "created_at[to]": "data.filters.created_at[1]",
+                    "issuer": "data.filters.issuer",
+                    "search": "data.search",
+                    "isCancelled": true
+                  }
+                },
+                "success_notification": {
+                  "title": {
+                    "en": "Success",
+                    "fr": "Succès"
+                  },
+                  "body": {
+                    "en": "The CSV document has been downloaded",
+                    "fr": "Le fichier CSV a bien été téléchargé"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "transactions": {
+      "isSelectedEntityIncluded": true,
+      "filters": {
+        "shape": "drawer",
+        "filterGroups": {
+          "status": [
+            {
+              "key": "status",
+              "type": "multiselectStatuses",
+              "statusGroup": "transaction",
+              "statusGroupBE": "Transaction",
+              "label": "status",
+              "placeholder": "select"
+            },
+            {
+              "key": "owner",
+              "type": "multiselect",
+              "label": "owner",
+              "object": "businessUnits",
+              "placeholder": "select"
+            },
+            {
+              "key": "created_at",
+              "type": "rangePicker",
+              "label": "creation_date",
+              "disable": "checkDateIsAfterToday"
+            },
+            {
+              "key": "type",
+              "type": "multiselect",
+              "label": "type",
+              "object": "Transaction",
+              "placeholder": "select"
+            }
+          ]
+        }
+      },
+      "table": [
+        { "column": "REFERENCE" },
+        { "column": "ENTITY" },
+        { "column": "TYPE" },
+        { "column": "STATUS" },
+        { "column": "CREATION_DATE" },
+        { "column": "AMOUNT_EXCL_VAT" },
+        { "column": "AMOUNT" },
+        { "column": "AMOUNT_INCL_VAT" }
+      ],
+      "tabs": [
+        {
+          "key": "all",
+          "title": {
+            "en": "All",
+            "fr": "Toutes"
+          },
+          "url": "/transactions"
+        },
+        {
+          "key": "cancelled",
+          "filters": {
+            "shape": "drawer",
+            "filterGroups": {
+              "status": [
+                {
+                  "key": "owner",
+                  "type": "multiselect",
+                  "label": "owner",
+                  "object": "businessUnits",
+                  "placeholder": "select"
+                },
+                {
+                  "key": "created_at",
+                  "type": "rangePicker",
+                  "label": "creation_date",
+                  "disable": "checkDateIsAfterToday"
+                },
+                {
+                  "key": "type",
+                  "type": "multiselect",
+                  "label": "type",
+                  "object": "Transaction",
+                  "placeholder": "select"
+                }
+              ]
+            }
+          },
+          "title": {
+            "en": "Cancelled",
+            "fr": "Annulés"
+          },
+          "url": "/transactions?isCancelled=true"
+        }
+      ]
+    },
+    "receptionDetails": {
+      "table": [
+        { "column": "IMAGE" },
+        { "column": "PRODUCT_LABEL" },
+        { "column": "PRODUCT_BARCODE" },
+        { "column": "PACKAGING_REF" },
+        { "column": "PACKAGING_LABEL" },
+        { "column": "OUTER" },
+        { "column": "ORDERED" },
+        { "column": "RECEIVED" },
+        { "column": "DAMAGED" },
+        { "column": "MISSING" },
+        { "column": "UNIT_PRICE" },
+        { "column": "TOTAL_AMOUNT" },
+        { "column": "TOTAL_RECEIVED_AMOUNT" },
+        { "column": "TRASH" }
+      ],
+      "totalAmounts": [
+        { "line": "ORDERED" },
+        { "line": "RECEIVED" },
+        { "line": "DAMAGED" },
+        { "line": "MISSING" },
+        { "line": "TOTAL_AMOUNT" },
+        { "line": "TOTAL_RECEIVED_AMOUNT" }
+      ]
+    },
+    "files": {
+      "maxSize": "4",
+      "formats": [".jpg", ".jpeg", ".png", ".pdf"]
+    }
+  }
+}

@@ -1,0 +1,575 @@
+{
+    "key": "french",
+    "common": {
+        "yes": "Oui",
+        "no": "Non",
+        "cancel": "Annuler",
+        "apply": "Appliquer",
+        "edit": "Éditer",
+        "delete": "Supprimer",
+        "expedition": "Expéditions",
+        "receptions": "Réceptions",
+        "reception": "Réception",
+        "preparation": "Préparation",
+        "delivery": "Livraison",
+        "returns": "Retours",
+        "transactions": "Transactions",
+        "confirm": "Confirmer",
+        "validate": "Valider",
+        "go_back": "Non, revenir",
+        "yes_confirm": "Oui, confirmer",
+        "today": "Aujourd'hui",
+        "yesterday": "Hier",
+        "no_data": "Aucune donnée",
+        "status": "Statut",
+        "product": "Produit",
+        "type": "Type",
+        "motives": "Motif(s)",
+        "enter": "Entrer...",
+        "yes_quit": "Oui, annuler",
+        "added": "Ajouté",
+        "by_someone": " par {{firstName}} {{lastName}}",
+        "save": "Enregistrer",
+        "success": "Succès",
+        "error": "Erreur",
+        "entity": "Entité",
+        "download": "Télécharger",
+        "tracking_ID": "Lien de suivi",
+        "creation_date": "Date de création",
+        "loading": "Chargement...",
+        "amount": "Montant",
+        "label": "Libellé",
+        "mode": "Mode",
+        "add": "Ajouter",
+        "subtract": "Soustraire",
+        "no_access": "Access refusé",
+        "no_access_to_page": "Vous n'avez pas accès à cette page. Veuillez contacter votre administrateur.",
+        "yes_cancel": "Oui, annuler",
+        "supplier": "Fournisseur",
+        "products": "Produits",
+        "browse": "Parcourir",
+        "search_by": "Rechercher par...",
+        "day_one": "jour",
+        "day_other": "jours",
+        "clear_selection": "Annuler la sélection",
+        "save_draft": "Enregistrer comme brouillon",
+        "save_changes": "Enregistrer les modifications",
+        "barcode": "Code barre",
+        "created_by": "Créée par",
+        "search": "Chercher",
+        "reference": "Réference",
+        "quantity": "Quantité",
+        "total_outer": "Total PCB",
+        "order": "Commande",
+        "no_attachment": "Aucune preuve n'a été téléchargée",
+        "received": "Reçu",
+        "damaged": "Endommagé",
+        "missing": "Absent",
+        "actions": "Actions",
+        "receive": "Réceptionner",
+        "total": "Total",
+        "unit_price": "Prix unitaire"
+    },
+    "modals": {
+        "add_products": {
+            "title": "Ajouter des produits",
+            "search_by_product": "Rechercher par produit, colisage"
+        },
+        "out_of_stock": {
+            "title": "Mettre en rupture",
+            "content": "Sélectionner la quantité à mettre en rupture"
+        },
+        "cancel_out_of_stock": {
+            "title": "Annuler la rupture",
+            "content": "Après la validation, les articles mis précédemment en rupture de stock vont revenir au statut “Préparé“"
+        },
+        "confirm_preparation": {
+            "title": "Confirmation",
+            "content": "Vous êtes en train de confirmer la préparation. Aucun changement ne pourrait pas être effectuer après. Êtes-vous sûr ?"
+        },
+        "return_creation": {
+            "title": "Retourner des articles de la commande",
+            "return_items": "Retourner des articles",
+            "return_to": "Retourner à",
+            "select_entity": "Sélectionner une entité",
+            "select_type": "Sélectionner un type",
+            "select_reason": "Sélectionner un motif de retour",
+            "items_to_return": "Articles à retourner",
+            "add_products_to_return": "Ajouter des produits à retourner",
+            "add_return": "Ajouter un retour",
+            "delete_return": "Supprimer le retour",
+            "text_limit_error": "Le motif doit être limité à 200 caractères",
+            "type_tooltip": "Le mode de retour de(s) produit(s)",
+            "motives_tooltip": "Informations supplémentaires sur le retour",
+            "reason_tooltip": "Pourquoi vous retournez le(s) produit(s)",
+            "table": {
+                "return_reason": "Motif de retour",
+                "quantity_left": "Quantité restante",
+                "quantity_to_return": "Quantité à retourner"
+            },
+            "empty_text": "Aucun produit disponible pour le retour"
+        },
+        "shipment_creation": {
+            "product": "Produit",
+            "ordered": "Commandé",
+            "prepared": "Préparé",
+            "out_of_stock": "En rupture",
+            "substituted": "Substitué",
+            "items_to_ship": "Articles à livrer",
+            "add_products_to_ship": "Ajoutez des produits à livrer",
+            "quantity_to_ship": "Quantité à livrer",
+            "success_notification": "La livraison a été créée",
+            "no_data": "Aucun produit disponible pour la livraison"
+        },
+        "cancel_shipment_creation": {
+            "title": "Annuler la création d’une livraison ?",
+            "content": "Les modifications que vous avez faites ne seront pas enregistrées"
+        },
+        "cancel_return_creation": {
+            "title": "Annuler le retour des articles ?",
+            "content": "Les modifications que vous avez faites ne seront pas enregistrées"
+        },
+        "edit_shipping_address": {
+            "title": "Modifier l’adresse de livraison",
+            "make_changes": "Apportez les modifications nécessaires dans les champs disponibles pour l'édition",
+            "name": "Nom",
+            "address_line": "Ligne  d'adresse {{count}}",
+            "postal_code": "Code postal",
+            "city": "Ville",
+            "country": "Pays",
+            "email": "Email",
+            "phone_number": "Numéro de téléphone",
+            "address_comment": "Commentaire d'adresse",
+            "type": "Type",
+            "quit_editing": "Annuler les modifications de l’adresse ?",
+            "changes_not_saved": "Les modifications que vous avez faites ne seront pas enregistrées"
+        },
+        "confirm_delete_attachment": {
+            "title": "Supprimer la preuve de livraison ?",
+            "content": "Êtes-vous sûr de vouloir supprimer cette preuve de livraison ? Une fois supprimée, celle-ci ne sera plus accessible"
+        },
+        "shipment_hand_over": {
+            "enter_code": "Veuillez entrer le code de retrait appelé par le client",
+            "input": {
+                "label": "Saisissez un code de retrait à quatre chiffres"
+            },
+            "shipped_from": "Expédié par"
+        },
+        "edit_fee": {
+            "edit_information": "Veuillez modifier les informations que vous souhaitez mettre à jour. Le montant total sera mis à jour."
+        },
+        "add_fee": {
+            "specify_fee": "Veuillez indiquer le titre et montant de frais que vous souhaitez appliquer"
+        },
+        "cancel_order_creation": {
+          "title": "Annuler la creation de commande ?",
+          "content": "Les modifications que vous avez faites ne seront pas enregistrées"
+        },
+        "change_supplier": {
+          "title": "Changer de fournisseur",
+          "content": "Êtes-vous sûr de vouloir changer de fournisseur ? Les produits sélectionnés seront supprimés"
+        },
+        "cancel_order_edition": {
+          "title": "Annuler la modification de la commande",
+          "content": "Êtes-vous sûr de vouloir annuler la modification de la commande ?"
+        },
+        "order_reception": {
+          "select_delivery": "Sélectionnez la livraison",
+          "receive": "Réceptionner",
+          "add_new_delivery": "Ajouter une livraison",
+          "add_and_receive": "Ajouter et réceptionner",
+          "delivery_reference": "Référence de livraison"
+        },
+        "cancel_receive_reception": {
+          "title": "Annuler la réception",
+          "content": "Êtes-vous sûr de vouloir annuler la réception ?"
+        },
+        "confirm_reception": {
+          "title": "Compléter la réception",
+          "content": "Tous les produits de l’expédition seront déclarés et le stock sera mis à jour"
+        },
+        "confirm_delete_expedition_attachment": {
+            "title": "Supprimer le bon de livraison ?",
+            "content": "Êtes-vous sûr de vouloir supprimer le bon de livraison ? Une fois supprimé, il ne sera plus accessible"
+        }
+    },
+    "notifications": {
+        "something_bad_happened": "Quelque chose de mal s’est passé, essayez de nouveau s’il vous plaît",
+        "order_created": "Une nouvelle commande a été créée",
+        "return_created_successfully": {
+            "message": "Retour créé avec succès",
+            "description_one": "{{count}} article a été demandé pour le retour",
+            "description_other": "{{count}} articles ont été demandés pour le retour"
+        },
+        "return_created_with_error": {
+            "message": "Erreur de demande de retour",
+            "description_one": "{{count}} article ne peut pas être retourné pour le moment",
+            "description_other": "{{count}} articles ne peuvent pas être retournés pour le moment"
+        },
+        "delivery_address_updated": "L'adresse de livraison a bien été modifiée",
+        "attachment_deleted_successfully": {
+            "message": "Suppression réussie",
+            "description": "La preuve de livraison a été supprimée"
+        },
+        "file_too_large": {
+            "message": "Fichier trop grand",
+            "description": "Téléchargez un fichier jusqu'à {{size}}Mo"
+        },
+        "wrong_format": {
+            "message": "Format incorrect",
+            "description": "Téléchargez une image ou .pdf"
+        },
+        "delivery_handed": "La livraison a été remise au client",
+        "fee_edited": "Les frais ont été modifiés",
+        "fee_created": "Les frais ont été créés",
+        "no_access_tab": "Vous ne possédez pas d'accès à cet onglet, nous vous redirigerons donc vers les informations disponibles sur la commande",
+        "order_updated": "La commande a bien été mise à jour",
+        "expedition_created": "L'expédition a été créée",
+        "reception_created": "La réception a été créée",
+        "expedition_attachment_deleted_successfully": {
+            "message": "Suppression réussie",
+            "description": "Le bon de livraison a été supprimé"
+        }
+    },
+    "errors": {
+        "incorrect_status_code": "Code d'état incorrect",
+        "incorrect_value_length": "La saisie doit être limitée à {{length}} caractères",
+        "incorrect_email": "L'adresse email valide est requise",
+        "incorrect_international_phone_number": "Le numéro de téléphone au format international est requis",
+        "country_code": {
+            "400": "Le code du pays doit être une valeur valide"
+        },
+        "phone": {
+            "400": "Le numéro de téléphone au format international est requis"
+        },
+        "code_mandatory": "Le code est obligatoire",
+        "code_length": "Entrez 4 chiffres",
+        "positive_number": "Entrez un montant positif",
+        "not_allowed_quantity": "Il est impossible de commander moins de {{min_quantity}} colis"
+    },
+    "navigation": {
+        "orders": "Commandes",
+        "my_orders": "Mes commandes",
+        "my_preparations": "Mes ordres de préparation",
+        "my_deliveries": "Mes ordres de livraison",
+        "my_returns": "Mes retours",
+        "my_transactions": "Mes transactions"
+    },
+    "filters": {
+        "groups": {
+          "status": "Statut",
+          "dates": "Dates",
+          "order_details": "Détails de la commande"
+        },
+        "labels": {
+          "type": "Type",
+          "owner": "Entité",
+          "creation_date": "Date de création",
+          "order_creation_date": "Date de création",
+          "delivery_date": "Date de livraison",
+          "promised_delivery_date": "Date de livraison prévue",
+          "order_type": "Type de la commande",
+          "order_status": "Statut de la commande",
+          "fulfillment_status": "Statut de préparation de la commande",
+          "shipment_status": "Statut de livraison de la commande",
+          "children": "Afficher les données des business units fils",
+          "status": "Statut"
+        },
+        "tooltips": {
+          "order_status": "Statut global d'une commande",
+          "fulfillment_status": "Statut de préparation global d’une commande",
+          "shipment_status": "Statut global de livraison d'une commande",
+          "children": "Activez ce bouton pour voir les données des business units fils"
+        },
+        "placeholders": {
+          "select": "Sélectionner..."
+        },
+        "clear": "Réinitialiser les filtres",
+        "count": "Filtres actifs ({{number}})",
+        "start_date": "Date de début",
+        "end_date": "Date de fin",
+        "title": "Filtres"
+    },
+    "orders": {
+        "search": {
+            "placeholder": "Rechercher par référence commande"
+        },
+        "table": {
+            "reference": "Commande",
+            "status": "Statut de commande",
+            "fulfillment_status": "Statut préparation",
+            "shipment_status": "Statut livraison"
+        },
+        "empty": {
+            "title": "Pas encore de commandes",
+            "subtitle": "Des conseils sur le flux de travail de la commande peuvent être trouvés ici"
+        }
+    },
+    "fulfillments": {
+        "search": {
+            "placeholder": "Rechercher par référence"
+        },
+        "table": {
+            "reference": "Référence",
+            "status": "Statut"
+        },
+        "empty": {
+            "title": "Pas encore d'ordres de préparation",
+            "subtitle": "Après la création, les ordres de préparation seront accessibles dans ce tableau"
+        }
+    },
+    "shipments": {
+        "search": {
+            "placeholder": "Rechercher par référence"
+        },
+        "table": {
+            "reference": "Référence",
+            "status": "Statut",
+            "tracking_link": "Lien de suivi"
+        },
+        "empty": {
+            "title": "Pas encore d'ordres de livraison",
+            "subtitle": "Après la création, les ordres de livraison seront accessibles dans ce tableau"
+        }
+    },
+    "transactions": {
+        "search": {
+            "placeholder": "Rechercher par référence"
+        },
+        "table": {
+            "reference": "Référence",
+            "status": "Statut",
+            "type": "Type"
+        },
+        "empty": {
+            "title": "Pas encore de transactions",
+            "subtitle": "Après la création, les transactions seront accessibles dans ce tableau"
+        }
+    },
+    "returns": {
+        "search": {
+            "placeholder": "Search by reference"
+        },
+        "table": {
+            "reference": "Référence",
+            "customer": "Nom du client",
+            "owner": "Entité",
+            "status": "Statut"
+        },
+        "empty": {
+            "title": "Pas encore de retours",
+            "subtitle": "Après la création, les retours seront accessibles dans ce tableau"
+        }
+    },
+    "order": {
+        "table": {
+            "amount": "Montant"
+        },
+        "customer": {
+            "title": "Informations client",
+            "email": "E-mail"
+        },
+        "supplier": {
+            "title": "Information fournisseur",
+            "email": "E-mail"
+        },
+        "info": {
+            "title": "Détails de la commande",
+            "type": "Type",
+            "shipping_address": "Adresse de livraison",
+            "preparation_status": "Statut de préparation",
+            "delivery_status": "Statut de livraison"
+        },
+        "history": {
+            "title": "Historique de la commande",
+            "order_status_changed": "Changement de statut de la commande de \"{{from}}\" à \"{{to}}\"",
+            "preparation_status_changed": "Changement de statut de préparation de la commande de \"{{from}}\" à \"{{to}}\"",
+            "order_shipment_status_changed": "Changement de statut de livraison de la commande de \"{{from}}\" à \"{{to}}\"",
+            "order_cancelled": "La commande a été annulée",
+            "order_comment_created": "Un commentaire a été ajouté",
+            "order_comment_updated": "Un commentaire a été modifié",
+            "order_comment_deleted": "Un commentaire a été supprimé",
+            "fulfillment_created": "Un ordre de préparation a été créé",
+            "fulfillment_status_changed": "Changement de statut d’un ordre de préparation de \"{{from}}\" à \"{{to}}\"",
+            "shipment_created": "Un ordre de livraison a été créé",
+            "shipment_status_changed": "Changement de statut d’un ordre de livraison de \"{{from}}\" to \"{{to}}\"",
+            "fulfillment_cancelled": "Un ordre de préparation a été annulé",
+            "shipment_cancelled": "Un ordre de livraison a été annulé",
+            "shipping_address_changed": "L’adresse de livraison a été modifiée",
+            "return_created": "Un retour a été créé",
+            "return_status_changed": "Changement de statut d’un retour de \"{{from}}\" to \"{{to}}\"",
+            "return_cancelled": "Un retour a été annulé",
+            "billing_address_changed": "L’adresse de facturation  a été modifiée",
+            "order_line_updated": "Une ligne de commande a été modifiée",
+            "transaction_created": "Une transaction a été créée",
+            "transaction_status_changed": "Changement de statut d’une transaction de \"{{from}}\" to \"{{to}}\"",
+            "transaction_cancelled": "Une transaction a été annulée",
+            "no_events": "Aucun événement est lié à cette commande",
+            "expedition_created": "Une expédition a été créée",
+            "reception_created": "Une réception a été créée"
+        },
+        "order_synthesis": "Synthèse de la commande",
+        "created_at": "Créée le",
+        "actions": "Actions",
+        "comments": {
+            "panel_title": "Commentaires",
+            "form": {
+                "title": {
+                    "label": "Titre",
+                    "placeholder": "Tapez votre titre"
+                },
+                "sender": {
+                    "label": "Entité expéditrice",
+                    "placeholder": "Sélectionner l'entité",
+                    "tooltip": "Sélectionnez une entité par laquelle ce commentaire est publié"
+                },
+                "entity": {
+                    "label": "Entité destinataire",
+                    "placeholder": "Sélectionner l'entité",
+                    "tooltip": "Si aucun destinataire n'est indiqué, le commentaire sera adressé à tous les participants de la commande"
+                },
+                "comment": {
+                    "label": "Commentaire",
+                    "placeholder": "Tapez votre commentaire"
+                },
+                "submit": "Ajouter le commentaire",
+                "edit_comment": "Éditer le commentaire",
+                "make_changes": "Faites les changements nécessaires sur le titre et/ou le commentaire ci-dessous:"
+            },
+            "empty": "vide",
+            "edited": "modifié",
+            "delete_comment": "Effacer ce commentaire ?",
+            "delete_comment_warning": "Vous ne seriez plus en mesure de le récupérer"
+        },
+        "empty": {
+            "title": "Pas encore de commande",
+            "subtitle": "Des conseils sur le flux de travail de la commande peuvent être trouvés ici"
+        }
+    },
+    "order_reception_detailed": {
+        "empty": {
+            "title": "Vous n'avez pas encore de réceptions.",
+            "subtitle": "Elles apparaîtront dès qu'elles auront été créées."
+        }
+    },
+    "order_expedition_detailed": {
+        "empty": {
+            "title": "Vous n'avez pas encore d'expéditions.",
+            "subtitle": "Elles apparaîtront dès qu'elles auront été créées."
+        },
+        "empty_attachments": "Aucun bon de livraison n'a été téléchargé"
+    },
+    "order_fulfillment_detailed": {
+        "table": {
+            "product": "Produit",
+            "preparation_status": "Statut de préparation",
+            "ordered": "Commandé"
+        },
+        "empty": {
+            "title": "Vous n'avez pas encore de préparations.",
+            "subtitle": "Elles apparaîtront dès qu'elles auront été créées."
+        },
+        "preparation_entity": "Entité de préparation",
+        "prepare": "Préparer",
+        "resume": "Reprendre la préparation"
+    },
+    "order_shipment_detailed": {
+        "empty": {
+            "title": "Vous n'avez pas encore de livraisons",
+            "subtitle": "Elles apparaîtront dès qu'elles auront été créées."
+        },
+        "shipped_from": "Expédié par",
+        "delivered_by": "Livré par",
+        "no_delivery_proof": "Aucune preuve de livraison n’a été chargée"
+    },
+    "order_return_detailed": {
+        "table": {
+            "status": "Statut du retour"
+        },
+        "empty": {
+            "title": "Vous n'avez pas encore de retours.",
+            "subtitle": "Ils apparaîtront dès qu'ils auront été créés."
+        },
+        "return_type": "Type de retour",
+        "return_entity": "Entité de retour"
+    },
+    "order_transaction_detailed": {
+        "table": {
+            "amount_excl_VAT": "Total  HT"
+        },
+        "empty": {
+            "title": "Vous n'avez pas encore de transactions.",
+            "subtitle": "Elles apparaîtront dès qu'elles auront été créées."
+        }
+    },
+    "fulfillment_preparation": {
+        "out_of_stock": "Mettre en rupture",
+        "cancel_out_of_stock": "Annuler la rupture",
+        "table": {
+            "items": "Articles",
+            "ordered": "Commandé",
+            "picked": "Préparé",
+            "out_of_stock": "En rupture"
+        },
+        "information_line": "Afin d'effectuer la préparation, vous pouvez confirmer directement ou bien déclarer en rupture de stock des articles avant de confirmer."
+    },
+    "type": {
+        "Order": {
+            "ship_from_store": "Livraison magasin",
+            "bopis": "Retrait magasin",
+            "replenishment": "Réapprovisionnement"
+        },
+        "Transaction": {
+            "refund": "Remboursement",
+            "sale": "Vente"
+        },
+        "OrderReturn": {
+            "default": "Retour magasin"
+        }
+    },
+    "status_name": {
+        "fulfillment": "Statut de préparation",
+        "shipment": "Statut de livraison"
+    },
+    "order_creation": {
+        "title": "Nouvelle commande",
+        "supplier_name": "Nom Fournisseur",
+        "order_days": "Jours de commande",
+        "order_deadline": "Délai de commande pour le jour même",
+        "delivery_delay": "Délai de livraison",
+        "delivery_days": "Jours de livraison",
+        "order_date": "Jour de commande",
+        "delivery_date": "Jour de livraison attendu",
+        "min_amount": "Montant total min",
+        "product_table": {
+            "box_size": "Colisage",
+            "packaging_ref": "Ref colisage",
+            "outer": "PCB",
+            "quantity": "Quantité",
+            "unit_price_excl_vat": "Prix HT",
+            "unit_price_incl_vat": "Prix TTC",
+            "amount_excl_vat": "Total HT",
+            "vat_amount": "Total TVA",
+            "amount_incl_vat": "Total TTC",
+            "total_quantity": "PCB total",
+            "total_excl_vat": "Total HT",
+            "total_vat": "Total TVA",
+            "total_incl_vat": "Total TTC",
+            "min_quantity": "Quantité min",
+            "min_price": "Prix min",
+            "price_per_unit": "Prix à l’unité"
+        },
+        "min_total_is": "Le montant total minimum par commande est de {{amount}}",
+        "min_quantity_allowed": "Quantité min pour commander"
+    },
+    "reception_details": {
+        "ordered": "Commandé",
+        "received": "Reçu",
+        "damaged": "Endommagé",
+        "missing": "Absent",
+        "unit_price": "Prix unitaire",
+        "total_amount": "Montant total",
+        "total_received_amount": "Montant total reçu",
+        "add_unexpected_item": "Ajouter un produit imprévu"
+    }
+}

@@ -1,0 +1,575 @@
+{
+    "key": "english",
+    "common": {
+        "yes": "Yes",
+        "no": "No",
+        "cancel": "Cancel",
+        "apply": "Apply",
+        "edit": "Edit",
+        "delete": "Delete",
+        "expedition": "Expeditions",
+        "receptions": "Receptions",
+        "reception": "Reception",
+        "preparation": "Preparation",
+        "delivery": "Delivery",
+        "returns": "Returns",
+        "transactions": "Transactions",
+        "confirm": "Confirm",
+        "validate": "Validate",
+        "go_back": "Go back",
+        "yes_confirm": "Yes, confirm",
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "no_data": "No data",
+        "status": "Status",
+        "product": "Product",
+        "type": "Type",
+        "motives": "Motive(s)",
+        "enter": "Enter...",
+        "yes_quit": "Yes, quit",
+        "added": "Added",
+        "by_someone": " by {{firstName}} {{lastName}}",
+        "save": "Save",
+        "success": "Success",
+        "error": "Error",
+        "entity": "Entity",
+        "download": "Download",
+        "tracking_ID": "Tracking ID",
+        "creation_date": "Creation date",
+        "loading": "Loading...",
+        "amount": "Amount",
+        "label": "Label",
+        "mode": "Mode",
+        "add": "Add",
+        "subtract": "Subtract",
+        "no_access": "No access",
+        "no_access_to_page": "You have no access to this page. Please, contact your administrator.",
+        "yes_cancel": "Yes, cancel",
+        "supplier": "Supplier",
+        "products": "Products",
+        "browse": "Browse",
+        "search_by": "Search by...",
+        "day_one": "day",
+        "day_other": "days",
+        "clear_selection": "Clear selection",
+        "save_draft": "Save as draft",
+        "save_changes": "Save changes",
+        "barcode": "Barcode",
+        "created_by": "Created by",
+        "search": "Search",
+        "reference": "Reference",
+        "quantity": "Quantity",
+        "total_outer": "Total Outer",
+        "order": "Order",
+        "no_attachment": "No proof has been uploaded",
+        "received": "Received",
+        "damaged": "Damaged",
+        "missing": "Missing",
+        "actions": "Actions",
+        "receive": "Receive",
+        "total": "Total",
+        "unit_price": "Unit price"
+    },
+    "modals": {
+        "add_products": {
+            "title": "Add products",
+            "search_by_product": "Search by product, packaging"
+        },
+        "out_of_stock": {
+            "title": "Put out of stock",
+            "content": "Select quantity to put out of stock"
+        },
+        "cancel_out_of_stock": {
+            "title": "Cancel out of stock",
+            "content": "After validation, the items put in out of stock will return to the status “Prepared“"
+        },
+        "confirm_preparation": {
+            "title": "Confirmation",
+            "content": "You are about to confirm the preparation. No changes would be possible afterwards. Do you want to proceed?"
+        },
+        "return_creation": {
+            "title": "Return items of Order",
+            "return_items": "Return items",
+            "return_to": "Return to",
+            "select_entity": "Select an entity",
+            "select_type": "Select a type",
+            "select_reason": "Select reason",
+            "items_to_return": "Items to return",
+            "add_products_to_return": "Add products to return",
+            "add_return": "Add return",
+            "delete_return": "Remove return",
+            "text_limit_error": "Motive must be up to 200 characters",
+            "type_tooltip": "The way of returning the product(s)",
+            "motives_tooltip": "Additional information regarding return",
+            "reason_tooltip": "Why you return the product(s)",
+            "table": {
+                "return_reason": "Return reason",
+                "quantity_left": "Quantity left",
+                "quantity_to_return": "Quantity to return"
+            },
+            "empty_text": "No products available for return"
+        },
+        "shipment_creation": {
+            "product": "Product",
+            "ordered": "Ordered",
+            "prepared": "Prepared",
+            "out_of_stock": "Out of stock",
+            "substituted": "Substituted",
+            "items_to_ship": "Items to ship",
+            "add_products_to_ship": "Add products to ship",
+            "quantity_to_ship": "Quantity to ship",
+            "success_notification": "Shipment has been created",
+            "no_data": "No products available for shipping"
+        },
+        "cancel_shipment_creation": {
+            "title": "Quit shipment creation?",
+            "content": "Changes you made so far will not be saved"
+        },
+        "cancel_return_creation": {
+            "title": "Quit returning items?",
+            "content": "Changes you made so far will not be saved"
+        },
+        "edit_shipping_address": {
+            "title": "Modify delivery address",
+            "make_changes": "Make necessary changes in the fields available for editing",
+            "name": "Name",
+            "address_line": "Address line {{count}}",
+            "postal_code": "Postal code",
+            "city": "City",
+            "country": "Country",
+            "email": "Email",
+            "phone_number": "Phone number",
+            "address_comment": "Address comment",
+            "type": "Type",
+            "quit_editing": "Quit address editing?",
+            "changes_not_saved": "Changes you made so far will not be saved"
+        },
+        "confirm_delete_attachment": {
+            "title": "Delete delivery proof?",
+            "content": "Are you sure you want to delete the delivery proof? Once deleted, it will not be accessible anymore"
+        },
+        "shipment_hand_over": {
+            "enter_code": "Please enter the pickup code called by the customer",
+            "input": {
+                "label": "Enter a four-digit pickup code"
+            },
+            "shipped_from": "Shipped from"
+        },
+        "edit_fee": {
+            "edit_information": "Please edit the information that you want to update. The total amount will be updated."
+       },
+        "add_fee": {
+            "specify_fee": "Please specify the fee you want to add"
+        },
+        "cancel_order_creation": {
+          "title": "Cancel order creation?",
+          "content": "The changes you have made will not be saved"
+        },
+        "change_supplier": {
+          "title": "Change the supplier",
+          "content": "Are you sure you want to change the supplier? The selected products will be removed"
+        },
+        "cancel_order_edition": {
+          "title": "Cancel modification of the order",
+          "content": "Are you sure you want to cancel modification of the order?"
+        },
+        "order_reception": {
+          "select_delivery": "Select the delivery",
+          "receive": "Receive",
+          "add_new_delivery": "Add a new delivery",
+          "add_and_receive": "Add and receive",
+          "delivery_reference": "Delivery reference"
+        },
+        "cancel_receive_reception": {
+          "title": "Cancel reception",
+          "content": "Are you sure you want to cancel reception process?"
+        },
+        "confirm_reception": {
+          "title": "Complete the reception",
+          "content": "All items from the delivery will be declared, and the stock will be adjusted"
+        },
+        "confirm_delete_expedition_attachment": {
+            "title": "Delete delivery note?",
+            "content": "Are you sure you want to delete the delivery note? Once deleted, it will not be accessible anymore"
+        }
+    },
+    "notifications": {
+        "something_bad_happened": "Something bad happened, please try again",
+        "order_created": "New order has been created",
+        "return_created_successfully": {
+            "message": "Return created successfully",
+            "description_one": "{{count}} item has been requested for return",
+            "description_other": "{{count}} items have been requested for return"
+        },
+        "return_created_with_error": {
+            "message": "Error of return request",
+            "description_one": "{{count}} item can’t be returned at the moment",
+            "description_other": "{{count}} items can’t be returned at the moment"
+        },
+        "delivery_address_updated": "Delivery address has been successfully updated",
+        "attachment_deleted_successfully": {
+            "message": "Deleted successfully",
+            "description": "Delivery proof has been deleted"
+        },
+        "file_too_large": {
+            "message": "File too large",
+            "description": "Upload a file up to {{size}}MB"
+        },
+        "wrong_format": {
+            "message": "Wrong format",
+            "description": "Upload an image or .pdf"
+        },
+        "delivery_handed": "The delivery has been handed over to the customer",
+        "fee_edited": "The fee has been edited",
+        "fee_created": "The fee has been created",
+        "no_access_tab": "You have no access to this tab, so we’ll redirect you to the available order information",
+        "order_updated": "The order has been successfully updated",
+        "expedition_created": "Expedition has been created",
+        "reception_created": "Reception has been created",
+        "expedition_attachment_deleted_successfully": {
+            "message": "Deleted successfully",
+            "description": "Delivery note has been deleted"
+        }
+    },
+    "errors": {
+        "incorrect_status_code": "Incorrect status code",
+        "incorrect_value_length": "Input must be up to {{length}} characters",
+        "incorrect_email": "Valid email address is required",
+        "incorrect_international_phone_number": "Phone number in international format is required",
+        "country_code": {
+            "400": "Country code must be a valid value"
+        },
+        "phone": {
+            "400": "Phone number in international format is required"
+        },
+        "code_mandatory": "Code field is mandatory",
+        "code_length": "Please enter 4 digits",
+        "positive_number": "Please enter a positive amount",
+        "not_allowed_quantity": "Not allowed to order less than {{min_quantity}} packaging"
+    },
+    "navigation": {
+        "orders": "Orders",
+        "my_orders": "My orders",
+        "my_preparations": "My preparations",
+        "my_deliveries": "My deliveries",
+        "my_returns": "My returns",
+        "my_transactions": "My transactions"
+    },
+    "filters": {
+        "groups": {
+          "status": "Status",
+          "dates": "Dates",
+          "order_details": "Order details"
+        },
+        "labels": {
+          "type": "Type",
+          "owner": "Entity",
+          "creation_date": "Creation date",
+          "order_creation_date": "Order creation date",
+          "delivery_date": "Delivery date",
+          "promised_delivery_date": "Promised delivery date",
+          "order_type": "Order type",
+          "order_status": "Order Global status",
+          "fulfillment_status": "Order Fulfillment status",
+          "shipment_status": "Order Shipment status",
+          "children": "Show child business units data",
+          "status": "Status"
+        },
+        "tooltips": {
+          "order_status": "Overall status of an Order",
+          "fulfillment_status": "Overall preparation status of an Order",
+          "shipment_status": "Overall delivery status of an Order",
+          "children": "To view data from the child business units, please activate this toggle"
+        },
+        "placeholders": {
+          "select": "Select..."
+        },
+        "clear": "Clear all filters",
+        "count": "Active filters ({{number}})",
+        "start_date": "Start date",
+        "end_date": "End date",
+        "title": "Filters"
+    },
+    "orders": {
+        "search": {
+            "placeholder": "Search by Order reference"
+        },
+        "table": {
+            "reference": "Order N",
+            "status": "Order status",
+            "fulfillment_status": "Preparation status",
+            "shipment_status": "Delivery status"
+        },
+        "empty": {
+            "title": "No Orders, yet",
+            "subtitle": "Tips on the Order workflow can be found here"
+        }
+    },
+    "fulfillments": {
+        "search": {
+            "placeholder": "Search by reference"
+        },
+        "table": {
+            "reference": "Reference",
+            "status": "Status"
+        },
+        "empty": {
+            "title": "No preparations yet",
+            "subtitle": "Once created, the preparations will be accessible on this table"
+        }
+    },
+    "shipments": {
+        "search": {
+            "placeholder": "Search by reference"
+        },
+        "table": {
+            "reference": "Reference",
+            "status": "Status",
+            "tracking_link": "Tracking link"
+        },
+        "empty": {
+            "title": "No deliveries yet",
+            "subtitle": "Once created, the deliveries will be accessible on this table"
+        }
+    },
+    "transactions": {
+        "search": {
+            "placeholder": "Search by reference"
+        },
+        "table": {
+            "reference": "Reference",
+            "status": "Status",
+            "type": "Type"
+        },
+        "empty": {
+            "title": "No transactions yet",
+            "subtitle": "Once created, the transactions will be accessible on this table"
+        }
+    },
+    "returns": {
+        "search": {
+            "placeholder": "Search by reference"
+        },
+        "table": {
+            "reference": "Reference",
+            "customer": "Customer name",
+            "owner": "Entity",
+            "status": "Status"
+        },
+        "empty": {
+            "title": "No returns yet",
+            "subtitle": "Once created, the returns will be accessible on this table"
+        }
+    },
+    "order": {
+        "table": {
+            "amount": "Amount"
+        },
+        "customer": {
+            "title": "Customer information",
+            "email": "E-mail"
+        },
+        "supplier": {
+            "title": "Supplier information",
+            "email": "E-mail"
+        },
+        "info": {
+            "title": "Order details",
+            "type": "Type",
+            "shipping_address": "Shipping address",
+            "preparation_status": "Order preparation status",
+            "delivery_status": "Order delivery status"
+        },
+        "history": {
+            "title": "Order history",
+            "order_status_changed": "Order status changed from \"{{from}}\" to \"{{to}}\"",
+            "preparation_status_changed": "Order preparation status changed from \"{{from}}\" to \"{{to}}\"",
+            "order_shipment_status_changed": "Order shipment status changed from \"{{from}}\" to \"{{to}}\"",
+            "order_cancelled": "Order has been cancelled",
+            "order_comment_created": "A comment has been created",
+            "order_comment_updated": "A comment has been updated",
+            "order_comment_deleted": "A comment has been deleted",
+            "fulfillment_created": "A fulfillment has been created",
+            "fulfillment_status_changed": "Status of a fulfillment changed from \"{{from}}\" to \"{{to}}\"",
+            "shipment_created": "A shipment has been created",
+            "shipment_status_changed": "Status of a shipment changed from \"{{from}}\" to \"{{to}}\"",
+            "fulfillment_cancelled": "A fulfillment has been cancelled",
+            "shipment_cancelled": "A shipment has been cancelled",
+            "shipping_address_changed": "Shipping address has been changed",
+            "return_created": "A return has been created",
+            "return_status_changed": "Status of a return has changed from \"{{from}}\" to \"{{to}}\"",
+            "return_cancelled": "A return has been cancelled",
+            "billing_address_changed": "Billing address has been changed",
+            "order_line_updated": "An order line item have been updated",
+            "transaction_created": "A transaction has been created",
+            "transaction_status_changed": "Status of a transaction has changed from \"{{from}}\" to \"{{to}}\"",
+            "transaction_cancelled": "A transaction has been cancelled",
+            "no_events": "No events are related to the order",
+            "expedition_created": "An expedition has been created",
+            "reception_created": "A reception has been created"
+        },
+        "order_synthesis": "Order synthesis",
+        "created_at": "Created at",
+        "actions": "Actions",
+        "comments": {
+            "panel_title": "Comments",
+            "form": {
+                "title": {
+                    "label": "Title",
+                    "placeholder": "Type your title"
+                },
+                "sender": {
+                    "label": "Sender entity",
+                    "placeholder": "Select entity",
+                    "tooltip": "Select an entity from which the comment is published"
+                },
+                "entity": {
+                    "label": "Recipient entity",
+                    "placeholder": "Select entity",
+                    "tooltip": "If no recipient is specified, the comment will be addressed to all order participants"
+                },
+                "comment": {
+                    "label": "Comment",
+                    "placeholder": "Type your comment"
+                },
+                "submit": "Add comment",
+                "edit_comment": "Edit comment",
+                "make_changes": "Make necessary changes in the title and/or the comment below:"
+            },
+            "empty": "empty",
+            "edited": "edited",
+            "delete_comment": "Delete this comment ?",
+            "delete_comment_warning": "You will not be able to recover it"
+        },
+        "empty": {
+            "title": "No Order, yet",
+            "subtitle": "Tips on the Order workflow can be found here"
+        }
+    },
+    "order_reception_detailed": {
+        "empty": {
+            "title": "You have no receptions, yet.",
+            "subtitle": "They will appear once they are created."
+        }
+    },
+    "order_expedition_detailed": {
+        "empty": {
+            "title": "You have no expeditions, yet.",
+            "subtitle": "They will appear once they are created."
+        },
+        "empty_attachments": "No delivery note has been uploaded"
+    },
+    "order_fulfillment_detailed": {
+        "table": {
+            "product": "Product",
+            "preparation_status": "Preparation status",
+            "ordered": "Ordered"
+        },
+        "empty": {
+            "title": "You have no preparations, yet.",
+            "subtitle": "They will appear once they are created."
+        },
+        "preparation_entity": "Preparation entity",
+        "prepare": "Prepare",
+        "resume": "Resume the preparation"
+    },
+    "order_shipment_detailed": {
+        "empty": {
+            "title": "You have no shipments, yet.",
+            "subtitle": "They will appear once they are created."
+        },
+        "shipped_from": "Shipped from",
+        "delivered_by": "Delivered by",
+        "no_delivery_proof": "No delivery proof has been uploaded"
+    },
+    "order_return_detailed": {
+        "table": {
+            "status": "Return status"
+        },
+        "empty": {
+            "title": "You have no returns, yet.",
+            "subtitle": "They will appear once they are created."
+        },
+        "return_type": "Return type",
+        "return_entity": "Return entity"
+    },
+    "order_transaction_detailed": {
+        "table": {
+            "amount_excl_VAT": "Amount Excl.VAT"
+        },
+        "empty": {
+            "title": "You have no transactions, yet.",
+            "subtitle": "They will appear once they are created."
+        }
+    },
+    "fulfillment_preparation": {
+        "out_of_stock": "Out of stock",
+        "cancel_out_of_stock": "Cancel out of stock",
+        "table": {
+            "items": "Items",
+            "ordered": "Ordered",
+            "picked": "Picked",
+            "out_of_stock": "Out of stock"
+        },
+        "information_line": "In order to do the preparation, you can confirm as is or declare items as out of stock before confirming."
+    },
+    "type": {
+        "Order": {
+            "ship_from_store": "Ship from store",
+            "bopis": "Pick up in store",
+            "replenishment": "Replenishment"
+        },
+        "Transaction": {
+            "refund": "Refund",
+            "sale": "Sale"
+        },
+        "OrderReturn": {
+            "default": "Store return"
+        }
+    },
+    "status_name": {
+        "fulfillment": "Preparation status",
+        "shipment": "Delivery status"
+    },
+    "order_creation": {
+        "title": "New order",
+        "supplier_name": "Supplier name",
+        "order_days": "Order days",
+        "order_deadline": "Same day order deadline",
+        "delivery_delay": "Delivery delay",
+        "delivery_days": "Delivery days",
+        "order_date": "Order date",
+        "delivery_date": "Expected delivery date",
+        "min_amount": "Min total amount",
+        "product_table": {
+            "box_size": "Box size",
+            "packaging_ref": "Packaging ref.",
+            "outer": "Outer",
+            "quantity": "Quantity",
+            "unit_price_excl_vat": "Unit price Excl.Vat",
+            "unit_price_incl_vat": "Unit price Incl.Vat",
+            "amount_excl_vat": "Amount excl.VAT",
+            "vat_amount": "VAT amount",
+            "amount_incl_vat": "Amount Incl.VAT",
+            "total_quantity": "Total outer",
+            "total_excl_vat": "Total Excl.Vat",
+            "total_vat": "Total Vat",
+            "total_incl_vat": "Total Incl.Vat",
+            "min_quantity": "Min quantity",
+            "min_price": "Min price",
+            "price_per_unit": "Price per unit"
+        },
+        "min_total_is": "Min total amount per order is {{amount}}",
+        "min_quantity_allowed": "Min quantity allowed for ordering"
+    },
+    "reception_details": {
+        "ordered": "Ordered",
+        "received": "Received",
+        "damaged": "Damaged",
+        "missing": "Missing",
+        "unit_price": "Unit Price",
+        "total_amount": "Total amount",
+        "total_received_amount": "Total received amount",
+        "add_unexpected_item": "Add unexpected item"
+    }
+}

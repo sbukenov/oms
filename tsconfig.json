@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./src/*", "./dist/*"]
+    },
+    "module": "esnext",
+    "outDir": "./dist",
+    "target": "esnext",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "sourceMap": false
+  },
+  "exclude": [
+    "**/*test.tsx",
+    "**/*test.ts",
+    "node_modules/**",
+    "dist/**"
+  ],
+  "include": [
+    "src"
+  ]
+}
